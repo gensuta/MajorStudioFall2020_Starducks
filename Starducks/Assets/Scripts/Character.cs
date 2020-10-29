@@ -35,7 +35,6 @@ public class Character : ScriptableObject
         for (int o = 0; o < nameNum; o++)
         {
             preferredDrinks.Add(Drink.CreateRandomDrink());
-            Debug.Log(preferredDrinks[0].getDrinkName());
         }
     }
 

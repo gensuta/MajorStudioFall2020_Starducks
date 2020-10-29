@@ -33,8 +33,9 @@ public class GameController : MonoBehaviour
 
         namesList = nameDoc.text.Split('\n'); // splitting text document so each name is grabbed from ea. line
 
+        sc = FindObjectOfType<SceneController>();
 
-       // HERETESTING PURPOSES
+       // HERE 4 TESTING PURPOSES
        /* characters = new Character[10];
         for(int i = 0; i < characters.Length; i++)
         {

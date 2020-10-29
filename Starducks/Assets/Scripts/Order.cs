@@ -15,4 +15,19 @@ public class Order
         myName = s;
         myDrink = d;
     }
+
+    public Order()
+    {
+        
+    }
+
+    public bool doesMatch(Order o)
+    {
+        // name part commented out for now bc we have no naming part
+        if (this.myDrink.doesMatch(o.myDrink)) // && this.myName.Equals(o.myName)) 
+        {
+            return true;
+        }
+        return false;
+    }
 }
