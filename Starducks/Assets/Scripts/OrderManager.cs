@@ -38,7 +38,6 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
     // Start is called before the first frame update
     void Start()
     {
-        maxTime = 15;// have this var in case we want to make it randomized or not later on
         slider.maxValue = maxTime;
 
         gc = FindObjectOfType<GameController>();

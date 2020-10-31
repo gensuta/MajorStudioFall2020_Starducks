@@ -3174,7 +3174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  maxTime: 0
+  maxTime: 15
   maxOrders: 4
   currentOrder: 0
   orderText: {fileID: 1309832556}
