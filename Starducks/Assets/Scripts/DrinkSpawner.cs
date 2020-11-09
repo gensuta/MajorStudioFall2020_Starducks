@@ -16,6 +16,7 @@ public class DrinkSpawner : MonoBehaviour
     void Start()
     {
         gc = FindObjectOfType<GameController>();
+        gc.currentOrder = 0; // setting back to 0 everytime we start a new minigame!!
     }
 
     // Update is called once per frame

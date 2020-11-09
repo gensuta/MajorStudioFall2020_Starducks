@@ -20,8 +20,8 @@ public class Drink : ScriptableObject
     {
         Drink d = new Drink();
 
-        d.flavor = (Flavor)Random.Range(1, Flavor.max-Flavor.min +1);
-        d.drinkType = (DrinkType)Random.Range(1, DrinkType.max-DrinkType.min+1);
+        d.flavor = (Flavor)Random.Range(1, (int)Flavor.max);
+        d.drinkType = (DrinkType)Random.Range(1, (int)DrinkType.max);
 
         int n = Random.Range(0, 2);
         d.isCold = (n == 0);
@@ -41,7 +41,7 @@ public class Drink : ScriptableObject
             s = size.ToString() + " " + temp + " " + ToFlavor(flavor) + " " + ToDrinkType(drinkType);
         }
         else
-            s = size.ToString() + flavor.ToString() + " " + drinkType.ToString();
+            s = size.ToString() + " " + ToFlavor(flavor) + " " + ToDrinkType(drinkType);
 
 
 
