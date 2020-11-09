@@ -38,7 +38,7 @@ public class Drink : ScriptableObject
         if (isCold)
         {
             if (!string.IsNullOrEmpty(specialText)) temp = specialText;
-            s = size.ToString() + " " + temp + " " + flavor.ToString() + " " + drinkType.ToString();
+            s = size.ToString() + " " + temp + " " + ToFlavor(flavor) + " " + ToDrinkType(drinkType);
         }
         else
             s = size.ToString() + flavor.ToString() + " " + drinkType.ToString();
@@ -57,8 +57,26 @@ public class Drink : ScriptableObject
         }
         return false;
     }
+
+    string ToFlavor(Flavor f) // placing this here because enums can't have spaces ;-;
+    {
+        if (f.ToString() == Flavor.SaltedCaramel.ToString())
+            return "Salted Caramel";
+        else if (f.ToString() == Flavor.PumpkinSpice.ToString())
+            return "Pumpkin Spice";
+        else
+            return f.ToString();
+    }
+
+    string ToDrinkType(DrinkType d)
+    {
+        if (d.ToString() == DrinkType.ColdBrew.ToString())
+            return "Cold Brew";
+        else
+            return d.ToString();
+    }
 }
-public enum DrinkType { min,tea, coffee, latte, smoothie,max}; // we don't need these but in case we do want drink types
-public enum Flavor { min,chocolate, lemon, cinammon,max }; // Prolly want to solidify these flavors - Geneva
+public enum DrinkType { min, Coffee, Latte, ColdBrew, Cappuchino, max}; // we don't need these but in case we do want drink types
+public enum Flavor { min, Mocha, Vanilla, SaltedCaramel, PumpkinSpice, max }; // Prolly want to solidify these flavors - Geneva
 public enum Size { small, medium, large }; // enum in case we want to change it to offbrand starbucks size names
 

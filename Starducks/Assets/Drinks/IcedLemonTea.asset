@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: IcedLemonTea
   m_EditorClassIdentifier: 
   isCold: 1
-  drinkType: 0
-  flavor: 1
+  drinkType: 1
+  flavor: 2
+  size: 0
+  specialText: 
