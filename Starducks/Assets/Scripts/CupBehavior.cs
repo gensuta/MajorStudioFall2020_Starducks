@@ -12,7 +12,7 @@ public class CupBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moveSpeed = Random.Range(0.05f, 0.1f);
+        moveSpeed = Random.Range(0.07f, 0.1f);
         sr = GetComponent<SpriteRenderer>();
     }
 

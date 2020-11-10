@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
 
     // keeping track of orders instead of characters
     public List<Order> orders;
+    public List<Character> currentCustomers; // these characters are ones we can drag into the inspector for the game! If it's empty we'll have all random characters
 
     public int currentOrder; // so we can go through each order for each minigame
 
@@ -35,14 +36,6 @@ public class GameController : MonoBehaviour
 
         sc = FindObjectOfType<SceneController>();
 
-       // HERE 4 TESTING PURPOSES
-       /* characters = new Character[10];
-        for(int i = 0; i < characters.Length; i++)
-        {
-            characters[i] = new Character();
-            characters[i].CreateRandomCharacter();
-        } // it works btw - Geneva
-        */
     }
 
     // Update is called once per frame
@@ -54,4 +47,16 @@ public class GameController : MonoBehaviour
     {
         return namesList[Random.Range(0, namesList.Length)];
     }
+    public Character GetRandomCharacter() // get a character from the list to add to the orders, remove from list afterwards to avoid doubles
+    {
+        if (currentCustomers.Count == 0) return null;
+        else
+        {
+            int c = Random.Range(0, currentCustomers.Count - 1);
+            Character holdBaby = currentCustomers[c];
+            currentCustomers.Remove(currentCustomers[c]);
+            return holdBaby;
+        }
+    }
+
 }

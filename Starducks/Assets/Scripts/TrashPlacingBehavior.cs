@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-public class TrashPlayingBehavior : MonoBehaviour // player controls this!
+public class TrashPlacingBehavior : MonoBehaviour // player controls this!
 {
 
     TrashManager tm;
 
     GameObject heldObj; // the object we're about to toss out
+    Trash trash;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,13 @@ public class TrashPlayingBehavior : MonoBehaviour // player controls this!
     {
         transform.position = GetMousePos(); // this is a lil invisible gameObject that's handling collisions bc I'm lazy and it works -Geneva
 
-        heldObj.transform.position = GetMousePos();
+        if(heldObj != null)
+            heldObj.transform.position = GetMousePos();
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            heldObj = null;
+        }
     }
 
     public Vector3 GetMousePos()
@@ -33,22 +40,16 @@ public class TrashPlayingBehavior : MonoBehaviour // player controls this!
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-    /*    For future Gen, please utilize the Trash class and make a script for the trash prefabs. don't be lazy!!
-     *    if(collision.gameObject.tag == "trash")
+        //For future Gen, please utilize the Trash class and make a script for the trash prefabs.don't be lazy!!
+        if(collision.gameObject.GetComponent<Trash>() != null)
         {
-            if(Input.GetMouseButton(0))
+            if(Input.GetMouseButtonDown(0))
             {
                heldObj = collision.gameObject;
+                trash = heldObj.GetComponent<Trash>();
             }
         }
 
-        if(Input.GetMouseButtonUp(0))
-        {
-            if(collision.gameObject.tag == "paper")
-            {
-
-            }
-        }*/
 
     }
 

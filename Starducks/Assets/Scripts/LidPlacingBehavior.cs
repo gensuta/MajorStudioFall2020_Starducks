@@ -8,10 +8,15 @@ public class LidPlacingBehavior : MonoBehaviour
     Vector3 normPos, lidPos;
 
     bool isRightClicking;
+    GameController gc;
+
+    [SerializeField]
+    float transitionTime = 3f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gc = FindObjectOfType<GameController>();
     }
 
     // Update is called once per frame
@@ -32,6 +37,12 @@ public class LidPlacingBehavior : MonoBehaviour
         {
             isRightClicking = false;
             transform.position = normPos;
+        }
+        if(gc.currentOrder >= gc.orders.Count)
+        {
+            transitionTime -= Time.deltaTime;
+            if (transitionTime < 0f)
+                gc.sc.LoadScene("TrashGame");
         }
     }
 

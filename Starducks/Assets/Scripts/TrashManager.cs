@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TrashManager : MonoBehaviour // should be trashSpawner but its too late now -Geneva
 {
+    [SerializeField]
     float timer, maxTime;
     public GameObject plastic, compost, paper;
 
@@ -11,7 +12,6 @@ public class TrashManager : MonoBehaviour // should be trashSpawner but its too 
     Vector3 spawnPos;
 
     GameController gc;
-    int currentTable;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class TrashManager : MonoBehaviour // should be trashSpawner but its too 
     // Update is called once per frame
     void Update()
     {
-        if (currentTable < gc.orders.Count)
+        if (gc.currentOrder < gc.orders.Count)
         {
             if (timer >= maxTime)
             {
@@ -48,7 +48,7 @@ public class TrashManager : MonoBehaviour // should be trashSpawner but its too 
                 break;
         }
 
-        maxTime = Random.Range(2f, 5f);
+        maxTime = Random.Range(1f, 2f);
         gc.currentOrder++;
         timer = 0;
     }

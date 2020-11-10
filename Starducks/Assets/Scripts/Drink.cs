@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Drink : ScriptableObject
 {
-    
+    public bool canRandomizeSize; // 
     public bool isCold; // if false, it's a hot drink
     public DrinkType drinkType;
     public Flavor flavor; // we can make this an array if we want to have multiple flavors
