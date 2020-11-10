@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class OrderManager : MonoBehaviour // only for the order placing scene. apologies for the misleading name!
 {
     [SerializeField]
-    float timer, maxTime;
+    float timer, maxTime, timeDif, minTime;
 
     [SerializeField]
     int maxOrders, currentOrder;
@@ -75,7 +75,11 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
                 Debug.Log("not cool bruv");
             }
         }
-
+        maxTime -= timeDif;
+        if(maxTime < minTime)
+        {
+            maxTime = minTime;
+        }
         timer = maxTime;
         currentOrder++;
 
