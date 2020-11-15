@@ -95,8 +95,9 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
         character = new Character();
         rightOrder = new Order();
 
+        if (gc.currentCustomers.Count > 0) character = gc.GetRandomCharacter();
+        else character.CreateRandomCharacter();
 
-        character.CreateRandomCharacter();
         rightOrder = character.getOrder();
 
         orderText.text = "Hi! Can I have a " +  rightOrder.myDrink.getDrinkName();

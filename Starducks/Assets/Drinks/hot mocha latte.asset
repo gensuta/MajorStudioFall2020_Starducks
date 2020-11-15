@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43b331d8e599c0e4c8950f3e82e871e5, type: 3}
-  m_Name: HotCinammonCoffee
+  m_Name: hot mocha latte
   m_EditorClassIdentifier: 
+  canRandomizeSize: 0
   isCold: 0
-  drinkType: 1
-  flavor: 2
+  drinkType: 2
+  flavor: 1
+  size: 0
+  specialText: 

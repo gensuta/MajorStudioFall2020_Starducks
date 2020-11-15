@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b331d8e599c0e4c8950f3e82e871e5, type: 3}
   m_Name: SaltedCaramelColdBrew
   m_EditorClassIdentifier: 
+  canRandomizeSize: 0
   isCold: 1
-  drinkType: 4
-  flavor: 2
-  size: 0
+  drinkType: 3
+  flavor: 3
+  size: 1
   specialText: 
