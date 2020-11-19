@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/OrderGame.unity
     guid: 70f5f452eba4e8c4dbea792a79dee9c4
   - enabled: 1
+    path: Assets/Scenes/BrewGame.unity
+    guid: f3535a30b145db44e8692f7209092b64
+  - enabled: 1
     path: Assets/Scenes/LidGame.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/TrashGame.unity
-    guid: b419d0769ba1fd6408118b189bad63be
   m_configObjects: {}

@@ -46,7 +46,7 @@ public class LidPlacingBehavior : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision) // score based on distance parent lid to cup
     {
         if (collision.GetComponent<CupBehavior>() != null)
         {

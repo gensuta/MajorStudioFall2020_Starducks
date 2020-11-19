@@ -30,6 +30,20 @@ public class Drink : ScriptableObject
         return d;
     }
 
+    public Drink()
+    {
+
+    }
+
+    public Drink(Flavor f, Size s, DrinkType _d, bool _isCold)
+    {
+        Drink d = new Drink();
+        d.flavor = f;
+        d.size = s;
+        d.drinkType = _d;
+        d.isCold = _isCold;
+    }
+
     public string getDrinkName()
     {
         string s;
@@ -50,7 +64,7 @@ public class Drink : ScriptableObject
 
     public bool doesMatch(Drink d)
     {
-        if(this.isCold == d.isCold && this.flavor == d.flavor && this.size == d.size &&
+        if (this.isCold == d.isCold && this.flavor == d.flavor && this.size == d.size &&
             this.drinkType == d.drinkType)
         {
             return true;
@@ -76,7 +90,6 @@ public class Drink : ScriptableObject
             return d.ToString();
     }
 }
-public enum DrinkType { min, Coffee, Latte, ColdBrew, Cappuchino, max}; // we don't need these but in case we do want drink types
+public enum DrinkType { min, Coffee, Latte, ColdBrew, Cappuchino, max }; // we don't need these but in case we do want drink types
 public enum Flavor { min, Mocha, Vanilla, SaltedCaramel, PumpkinSpice, max }; // Prolly want to solidify these flavors - Geneva
 public enum Size { small, medium, large }; // enum in case we want to change it to offbrand starbucks size names
-

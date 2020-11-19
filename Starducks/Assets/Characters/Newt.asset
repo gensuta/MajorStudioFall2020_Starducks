@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b32a4e5a2686ade4e96b8ae1dbead0e5, type: 3}
   m_Name: Newt
   m_EditorClassIdentifier: 
-  preferredDrinks:
-  - {fileID: 11400000, guid: c59d41e9aebfead42a29dd6e95b6b7ae, type: 2}
-  - {fileID: 11400000, guid: d2470bc487484464f99211eaee893fd6, type: 2}
+  preferredDrinks: []
   names:
   - Newt
   - Noot
