@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DraggableCup : MonoBehaviour, IDragHandler // in the brew game. The cup you drag onto the brew machine
+public class DraggableCup : MonoBehaviour, IDragHandler, IPointerEnterHandler, IPointerExitHandler // in the brew game. The cup you drag onto the brew machine
 {
     public Drink myDrink;
     public int drinkNum;
@@ -30,6 +30,17 @@ public class DraggableCup : MonoBehaviour, IDragHandler // in the brew game. The
             transform.parent = transform.parent.parent;
             outOfPanel = true;
         }
+    }
+
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log(myDrink.getDrinkName());
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+    
     }
 
     private void OnTriggerStay2D(Collider2D collision)
