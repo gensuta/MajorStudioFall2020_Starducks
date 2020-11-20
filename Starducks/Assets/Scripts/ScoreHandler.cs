@@ -8,7 +8,8 @@ public class ScoreHandler : MonoBehaviour
     // brew game - how close to the line were you? + is order correct
     // lid game - is it the right lid? are you on top of the cup or nah?
 
-    public int correct, incorrect, score, scoreMultiplier = 1;
+
+    public int correct, incorrect, score, scoreMultiplier = 1, bonus, totalBonus;
 
     public static ScoreHandler sc;
 
@@ -23,17 +24,23 @@ public class ScoreHandler : MonoBehaviour
 
     public void CorrectMove()
     {
-
+        Debug.Log("correct!");
+        correct++;
     }
 
     public void IncorrectMove()
     {
+        Debug.Log("incorrect!!");
+        incorrect++;
 
     }
 
     public void AddTimeBonus(float maxTime, float yourTime)
     {
+        float timeLeft = maxTime - yourTime;
 
+
+                //10% 25% 50%
     }
 
     public void AddDistanceBonus(float pos, float yourPos) // for cup line and lid placement. lid sends x, cup sends y
@@ -43,6 +50,19 @@ public class ScoreHandler : MonoBehaviour
 
     public int GetScore()
     {
-        return (correct * scoreMultiplier);
+        return (correct * scoreMultiplier) + totalBonus;
     }
+
+    public void AddTotalScore()
+    {
+
+    }
+
+    // each aspect that's correct/incorrect is counted. bonus if everything's correct
+}
+
+[System.Serializable]
+public class Score
+{
+
 }
