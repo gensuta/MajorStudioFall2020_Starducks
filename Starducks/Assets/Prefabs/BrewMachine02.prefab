@@ -747,6 +747,7 @@ MonoBehaviour:
   - {fileID: 8380114560528822606}
   - {fileID: 4971622020176342480}
   - {fileID: 8495450861228986636}
+  brewSpeed: 0.25
 --- !u!61 &4061462699665087814
 BoxCollider2D:
   m_ObjectHideFlags: 0

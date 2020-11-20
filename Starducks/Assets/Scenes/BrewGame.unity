@@ -965,7 +965,7 @@ PrefabInstance:
     - target: {fileID: 7054865043324172316, guid: 014376d0cfc47e14aa6eaa2d9cbb0f8a,
         type: 3}
       propertyPath: maxOrders
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7054865043324172317, guid: 014376d0cfc47e14aa6eaa2d9cbb0f8a,
         type: 3}
@@ -1398,10 +1398,10 @@ MonoBehaviour:
   currentDrinks: []
   currentOrders: []
   timeSlider: {fileID: 1061558148}
-  baseTime: 60
-  smallTime: 0
-  mediumTime: 0
-  largeTime: 0
+  baseTime: 80
+  smallTime: 7
+  mediumTime: 9
+  largeTime: 11
   maxTime: 0
   currentTime: 0
   ordersComplete: 0
