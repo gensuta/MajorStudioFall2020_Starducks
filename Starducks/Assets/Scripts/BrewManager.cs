@@ -12,10 +12,10 @@ public class BrewManager : MonoBehaviour // perhaps for the player?
     GameController gc;
 
     [SerializeField]
-    GameObject drinkPrefab, drinkHolder;
+    GameObject drinkPrefab, drinkHolder, orderPrefab,orderHolder;
     public int numSpawned;
 
-    public List<GameObject> currentDrinks;// the ones that are displayed!
+    public List<GameObject> currentDrinks, currentOrders;// the ones that are displayed!
 
     [SerializeField]
     Slider timeSlider;
@@ -31,6 +31,14 @@ public class BrewManager : MonoBehaviour // perhaps for the player?
         maxTime = CalculateTime();
         currentTime = maxTime;
         timeSlider.maxValue = maxTime;
+
+        currentOrders = new List<GameObject>();
+
+        for (int i = 0; i < gc.orders.Count; i++)
+        {
+            currentOrders.Add(Instantiate(orderPrefab, Vector3.zero, Quaternion.identity, orderHolder.transform));
+            currentOrders[i].GetComponentInChildren<TextMeshProUGUI>().text = gc.orders[i].myDrink.getDrinkName();
+        }
     }
 
     // Update is called once per frame
@@ -41,10 +49,13 @@ public class BrewManager : MonoBehaviour // perhaps for the player?
 
         if (currentTime <= 0f || ordersComplete == gc.maxOrders) GameController.Instance.sc.LoadScene("LidGame");
 
-        if (gc.currentOrder < gc.orders.Count && numSpawned < 4)
+
+
+
+      /*  if (gc.currentOrder < gc.orders.Count && numSpawned < 4)
         {
             SpawnDrink();
-        }
+        }*/
     }
 
     float CalculateTime()

@@ -599,7 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0dc81e96d3bf334ca6ef164f287ed56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endTimer: 5
+  endTimer: 1
   scoreTxt: {fileID: 704874337}
 --- !u!4 &1118564084
 Transform:

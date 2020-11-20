@@ -97,7 +97,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLidded: 0
   sr: {fileID: 0}
-  moveSpeed: 0
+  moveSpeed: 0.05
+  minSpeed: 0
+  maxSpeed: 0
 --- !u!61 &-2947022346883210292
 BoxCollider2D:
   m_ObjectHideFlags: 0

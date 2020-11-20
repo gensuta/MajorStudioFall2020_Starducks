@@ -162,6 +162,6 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
         myPanels[currentPanel].SetActive(true);
 
         if (currentPanel != 0) backButton.SetActive(true);
-        if (currentPanel == myPanels.Length -1) doneButton.SetActive(true);
+      //  if (currentPanel == myPanels.Length -1) doneButton.SetActive(true);
     }
 }
