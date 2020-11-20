@@ -77,17 +77,25 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
                 Debug.Log("not cool bruv");
             }
         }
+        else
+        {
+            gc.incorrect++;
+            Debug.Log("not cool bruv");
+            gc.orders.Add(rightOrder);
+        }
+
         maxTime -= timeDif;
         if (maxTime < minTime)
         {
             maxTime = minTime;
         }
+        slider.maxValue = maxTime;
         timer = maxTime;
         currentOrder++;
 
         if (currentOrder == gc.maxOrders)
         {
-            gc.sc.LoadScene("BrewGame"); // temporarily goes straight to lid game for testing purposes
+            gc.sc.LoadScene("BrewGame"); 
         }
 
 

@@ -24,7 +24,9 @@ public class Drink : ScriptableObject
         d.drinkType = (DrinkType)Random.Range(1, (int)DrinkType.max);
 
         int n = Random.Range(0, 2);
-        d.isCold = (n == 0);
+
+        if (d.drinkType == DrinkType.ColdBrew) d.isCold = true;
+        else d.isCold = (n == 0);
 
         d.size = (Size)Random.Range(0, 3);
         return d;

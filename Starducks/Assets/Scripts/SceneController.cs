@@ -101,6 +101,7 @@ public class SceneController : MonoBehaviour
 
     public void LoadScene(string sName)
     {
+        if(!IsSceneCalled("StartScreen"))GameController.Instance.maxOrders = GameController.Instance.orders.Count;
         SceneManager.LoadScene(sName);
     }
 
