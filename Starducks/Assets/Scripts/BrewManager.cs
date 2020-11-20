@@ -12,10 +12,10 @@ public class BrewManager : MonoBehaviour // perhaps for the player?
     GameController gc;
 
     [SerializeField]
-    GameObject drinkPrefab, drinkHolder;
+    GameObject drinkPrefab, drinkHolder, orderPrefab,orderHolder;
     public int numSpawned;
 
-    public List<GameObject> currentDrinks;// the ones that are displayed!
+    public List<GameObject> currentDrinks, currentOrders;// the ones that are displayed!
 
     [SerializeField]
     Slider timeSlider;
@@ -23,13 +23,22 @@ public class BrewManager : MonoBehaviour // perhaps for the player?
     [SerializeField]
     float baseTime, smallTime,mediumTime,largeTime, maxTime, currentTime;
 
+    public int ordersComplete;
     void Start()
     {
-        gc = FindObjectOfType<GameController>();
+        gc = GameController.Instance;
         gc.currentOrder = 0;
         maxTime = CalculateTime();
         currentTime = maxTime;
         timeSlider.maxValue = maxTime;
+
+        currentOrders = new List<GameObject>();
+
+        for (int i = 0; i < gc.orders.Count; i++)
+        {
+            currentOrders.Add(Instantiate(orderPrefab, Vector3.zero, Quaternion.identity, orderHolder.transform));
+            currentOrders[i].GetComponentInChildren<TextMeshProUGUI>().text = gc.orders[i].myDrink.getDrinkName();
+        }
     }
 
     // Update is called once per frame
@@ -37,14 +46,16 @@ public class BrewManager : MonoBehaviour // perhaps for the player?
     {
         currentTime -= Time.deltaTime;
         timeSlider.value = currentTime;
-        
-        if(gc.currentOrder < gc.orders.Count)
+
+        if (currentTime <= 0f || ordersComplete == gc.maxOrders) GameController.Instance.sc.LoadScene("LidGame");
+
+
+
+
+      /*  if (gc.currentOrder < gc.orders.Count && numSpawned < 4)
         {
-            if(numSpawned < 4)
-            {
-                SpawnDrink();
-            }
-        }
+            SpawnDrink();
+        }*/
     }
 
     float CalculateTime()
@@ -69,7 +80,7 @@ public class BrewManager : MonoBehaviour // perhaps for the player?
         DraggableCup d = g.GetComponent<DraggableCup>();
         d.myDrink = gc.orders[gc.currentOrder].myDrink;
         d.drinkNum = gc.currentOrder;
-        numSpawned++;
         gc.currentOrder++;
+        numSpawned++;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,6 +12,10 @@ public class DraggableCup : MonoBehaviour, IDragHandler, IPointerEnterHandler, I
     bool outOfPanel;
 
     RectTransform rect;
+
+    [SerializeField]
+    TextMeshProUGUI myText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,12 +40,13 @@ public class DraggableCup : MonoBehaviour, IDragHandler, IPointerEnterHandler, I
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log(myDrink.getDrinkName());
+        myText.transform.parent.gameObject.SetActive(true);
+        myText.text = myDrink.getDrinkName();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-    
+        myText.transform.parent.gameObject.SetActive(false);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

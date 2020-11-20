@@ -10,7 +10,7 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
     float timer, maxTime, timeDif, minTime;
 
     [SerializeField]
-    int maxOrders, currentOrder;
+    int currentOrder;
 
     GameController gc;
 
@@ -40,13 +40,13 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
     {
         slider.maxValue = maxTime;
 
-        gc = FindObjectOfType<GameController>();
+        gc = GameController.Instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentOrder < maxOrders) // max orders per round. something we can alter and tune ourseves
+        if (currentOrder < gc.maxOrders) // max orders per round. something we can alter and tune ourseves
         {
             if (timer <= 0)
             {
@@ -68,10 +68,12 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
 
             if (newOrder.doesMatch(rightOrder))
             {
+                gc.correct++;
                 Debug.Log("Nice!!!");
             }
             else
             {
+                gc.incorrect++;
                 Debug.Log("not cool bruv");
             }
         }
@@ -83,9 +85,9 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
         timer = maxTime;
         currentOrder++;
 
-        if (currentOrder == maxOrders)
+        if (currentOrder == gc.maxOrders)
         {
-            gc.sc.LoadScene(1); // temporarily goes straight to lid game for testing purposes
+            gc.sc.LoadScene("BrewGame"); // temporarily goes straight to lid game for testing purposes
         }
 
 
@@ -97,14 +99,6 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
 
         if (gc.currentCustomers.Count > 0) character = gc.GetRandomCharacter();
         else character.CreateRandomCharacter();
-
-        for(int i = 0; i < character.preferredDrinks.Count;i++)
-        {
-            if (character.preferredDrinks[i] == null)
-            {
-                character.preferredDrinks[i] = Drink.CreateRandomDrink();
-            }
-        }
 
         rightOrder = character.getOrder();
       
@@ -168,6 +162,6 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
         myPanels[currentPanel].SetActive(true);
 
         if (currentPanel != 0) backButton.SetActive(true);
-        if (currentPanel == myPanels.Length -1) doneButton.SetActive(true);
+      //  if (currentPanel == myPanels.Length -1) doneButton.SetActive(true);
     }
 }

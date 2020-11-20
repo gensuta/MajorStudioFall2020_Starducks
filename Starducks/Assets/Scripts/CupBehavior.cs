@@ -8,11 +8,11 @@ public class CupBehavior : MonoBehaviour
     public SpriteRenderer sr;
 
     [SerializeField]
-    float moveSpeed;
+    float moveSpeed, minSpeed,maxSpeed;
     // Start is called before the first frame update
     void Start()
     {
-        moveSpeed = Random.Range(0.07f, 0.1f);
+       // moveSpeed = Random.Range(minSpeed, maxSpeed); // uncomment this if you want randomness!
         sr = GetComponent<SpriteRenderer>();
     }
 

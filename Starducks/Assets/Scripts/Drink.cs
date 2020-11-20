@@ -49,7 +49,7 @@ public class Drink : ScriptableObject
         string s;
         string temp = isCold ? "iced" : "hot";
 
-        if (isCold)
+        if (isCold && drinkType != DrinkType.ColdBrew)
         {
             if (!string.IsNullOrEmpty(specialText)) temp = specialText;
             s = size.ToString() + " " + temp + " " + ToFlavor(flavor) + " " + ToDrinkType(drinkType);
@@ -66,6 +66,16 @@ public class Drink : ScriptableObject
     {
         if (this.isCold == d.isCold && this.flavor == d.flavor && this.size == d.size &&
             this.drinkType == d.drinkType)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    public bool doesSortaMatch(Drink d)
+    {
+        if (this.isCold == d.isCold && this.flavor == d.flavor && this.size == d.size)
         {
             return true;
         }

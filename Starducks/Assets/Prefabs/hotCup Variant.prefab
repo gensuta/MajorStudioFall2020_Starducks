@@ -48,6 +48,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.254902
       objectReference: {fileID: 0}
+    - target: {fileID: 5519603975197517616, guid: 8800d53ecfe258e4bb1d0969db638983,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 6080753307285180196, guid: 8800d53ecfe258e4bb1d0969db638983,
         type: 3}
       propertyPath: m_Name

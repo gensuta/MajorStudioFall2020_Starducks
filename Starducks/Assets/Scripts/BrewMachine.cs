@@ -22,20 +22,39 @@ public class BrewMachine : MonoBehaviour
     float[] stopPoints,stopPositions;// where to stop for the brew machine depending on the size of the drink. prolly needs a better name
 
     [SerializeField]
-    TextMeshProUGUI flavorText;
+    TextMeshProUGUI flavorText, toggleText;
+
+    [SerializeField]
+    Image[] cups;
 
     BrewManager bm;
 
     DraggableCup currentCup;
 
     bool isCold;
+    Size chosenSize;
 
+    List<Order> orders;
 
     void Start()
     {
         bm = FindObjectOfType<BrewManager>();
         flavorText.text = ToFlavor(currentFlavor);
-        drinkAmount.maxValue = stopPoints[stopPoints.Length-1] + 0.5f;
+        drinkAmount.maxValue = stopPoints[stopPoints.Length - 1] + 0.5f;
+
+        orders = new List<Order>();
+        foreach (Order o in GameController.Instance.orders)
+        {
+            orders.Add(o);
+        }
+
+        foreach (Image i in cups)
+        {
+            if (isCold)
+                i.color = Color.blue;
+            else
+                i.color = Color.red;
+        }
     }
 
     // Update is called once per frame
@@ -50,6 +69,13 @@ public class BrewMachine : MonoBehaviour
         rightDrink = c.myDrink;
         sliderImg.color = Color.gray;
         c.enabled = false;
+    }
+
+    public void ClickToPlaceCup(int s)
+    {
+        rightDrink = null;
+        sliderImg.color = Color.gray;
+        chosenSize = (Size)s;
     }
 
     string ToFlavor(int flavorNum) // placing this here because enums can't have spaces ;-;
@@ -71,6 +97,22 @@ public class BrewMachine : MonoBehaviour
     {
         isCold = false;
     }
+
+    public void ToggleTemperature()
+    {
+        isCold = !isCold;
+        if (isCold) toggleText.text = "Switch to cold";
+        else toggleText.text = "Switch to hot";
+
+        foreach(Image i in cups)
+        {
+            if (isCold)
+                i.color = Color.blue;
+            else
+                i.color = Color.red;
+        }
+    }
+
     public void NextFlavor()
     {
         if(currentFlavor < (int)Flavor.max -1) currentFlavor++;
@@ -100,7 +142,8 @@ public class BrewMachine : MonoBehaviour
 
     void PlaceStopLine()
     {
-        switch(rightDrink.size)
+        if (rightDrink != null) chosenSize = rightDrink.size;
+        switch(chosenSize)
         {
             case (Size.small):
                 stopLine.rectTransform.anchoredPosition = GetNewAnchoredPos(Size.small);
@@ -121,41 +164,86 @@ public class BrewMachine : MonoBehaviour
 
         float x = stopPositions[(int)s];
 
-        Debug.Log(x);
-
         newPos = new Vector3(x, newPos.y, newPos.z);
         return newPos;
     }
 
     public void Serve()
     {
-        Debug.Log(Mathf.Abs(drinkAmount.value - stopPoints[(int)rightDrink.size]));
+        if (rightDrink != null)
+        {
+            Debug.Log(Mathf.Abs(drinkAmount.value - stopPoints[(int)rightDrink.size]));
 
-        Drink newDrink = new Drink();
-        newDrink.flavor = (Flavor)currentFlavor;
-        newDrink.size = rightDrink.size;
-        newDrink.drinkType = rightDrink.drinkType;
-        newDrink.isCold = isCold;
+            Drink newDrink = new Drink();
+            newDrink.flavor = (Flavor)currentFlavor;
+            newDrink.size = rightDrink.size;
+            newDrink.drinkType = rightDrink.drinkType;
+            newDrink.isCold = isCold;
 
-        Debug.Log(newDrink.getDrinkName());
+            if (rightDrink.doesMatch(newDrink) && (Mathf.Abs(drinkAmount.value - stopPoints[(int)rightDrink.size]) < 0.7f))
+            {
+                GameController.Instance.correct++;
+                Debug.Log("nice");
+            }
+            else
+            {
+                GameController.Instance.incorrect++;
+                Debug.Log("not nice");
+            }
 
-        if (rightDrink.doesMatch(newDrink) && (Mathf.Abs(drinkAmount.value - stopPoints[(int)rightDrink.size]) < 0.7f))
-            Debug.Log("nice");
+            Destroy(bm.currentDrinks[currentCup.drinkNum]);
+            bm.numSpawned--;
+
+            
+        }
         else
-            Debug.Log("not nice");
+        {
+            DoesMatchAnOrder();
+        }
 
+        bm.ordersComplete++;
         drinkAmount.value = 0;
-        Destroy(bm.currentDrinks[currentCup.drinkNum]);
-        bm.numSpawned--;
-
         sliderImg.color = Color.white;
+    }
 
+    void DoesMatchAnOrder()
+    {
+        Drink createdDrink = new Drink();
+        createdDrink.size = chosenSize;
+        createdDrink.isCold = isCold;
+        createdDrink.flavor = (Flavor)currentFlavor;
+
+        int n = 0;
+        int correctNum = 0;
+        bool isCorrect = false;
+        foreach(Order o in GameController.Instance.orders)
+        {
+            if (o.myDrink.doesSortaMatch(createdDrink))
+            {
+                isCorrect = true;
+                correctNum = n;
+                break;
+            }
+            n++;
+        }
+        if(isCorrect)
+        {
+            GameController.Instance.correct++;
+            Debug.Log("nice");
+            bm.currentOrders[n].SetActive(false);
+            orders.Remove(orders[n]);
+        }
+        else
+        {
+            GameController.Instance.incorrect++;
+            Debug.Log("not nice");
+        }
     }
 
     public void Trash()
     {
         drinkAmount.value = 0;
         sliderImg.color = Color.white;
-        Destroy(bm.currentDrinks[currentCup.drinkNum]);
-    }
+/*        Destroy(bm.currentDrinks[currentCup.drinkNum]);
+*/    }
 }
