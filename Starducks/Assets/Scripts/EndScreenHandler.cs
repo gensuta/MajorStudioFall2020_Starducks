@@ -14,7 +14,7 @@ public class EndScreenHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoreTxt.text = "Your score is " + GameController.Instance.GetScore();
+        scoreTxt.text = "Your score is " + ScoreHandler.sc.GetScore();
     }
 
     // Update is called once per frame
@@ -23,8 +23,8 @@ public class EndScreenHandler : MonoBehaviour
         if (endTimer < 0 && Input.GetKeyDown(KeyCode.Space))
         {
             GameController.Instance.orders.Clear();
-            GameController.Instance.correct = 0;
-            GameController.Instance.incorrect = 0;
+            ScoreHandler.sc.correct = 0;
+            ScoreHandler.sc.incorrect = 0;
             GameController.Instance.sc.LoadScene("StartScreen");
         }
         else endTimer -= Time.deltaTime;

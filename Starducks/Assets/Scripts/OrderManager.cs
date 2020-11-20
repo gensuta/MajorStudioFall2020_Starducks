@@ -68,19 +68,16 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
 
             if (newOrder.doesMatch(rightOrder))
             {
-                gc.correct++;
-                Debug.Log("Nice!!!");
+                ScoreHandler.sc.CorrectMove();
             }
             else
             {
-                gc.incorrect++;
-                Debug.Log("not cool bruv");
+                ScoreHandler.sc.CorrectMove();
             }
         }
         else
         {
-            gc.incorrect++;
-            Debug.Log("not cool bruv");
+            ScoreHandler.sc.IncorrectMove();
             gc.orders.Add(rightOrder);
         }
 

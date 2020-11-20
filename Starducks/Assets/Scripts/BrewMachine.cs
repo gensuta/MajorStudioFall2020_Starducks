@@ -184,13 +184,11 @@ public class BrewMachine : MonoBehaviour
 
             if (rightDrink.doesMatch(newDrink) && (Mathf.Abs(drinkAmount.value - stopPoints[(int)rightDrink.size]) < 0.7f))
             {
-                GameController.Instance.correct++;
-                Debug.Log("nice");
+                ScoreHandler.sc.CorrectMove();
             }
             else
             {
-                GameController.Instance.incorrect++;
-                Debug.Log("not nice");
+                ScoreHandler.sc.CorrectMove();
             }
 
             Destroy(bm.currentDrinks[currentCup.drinkNum]);
@@ -230,15 +228,14 @@ public class BrewMachine : MonoBehaviour
         }
         if(isCorrect)
         {
-            GameController.Instance.correct++;
+            ScoreHandler.sc.CorrectMove();
             Debug.Log("nice");
             bm.currentOrders[n].SetActive(false);
             orders.Remove(orders[n]);
         }
         else
         {
-            GameController.Instance.incorrect++;
-            Debug.Log("not nice");
+            ScoreHandler.sc.IncorrectMove();
         }
     }
 

@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
 
     public int currentOrder; // so we can go through each order for each minigame
 
-    public int correct,incorrect,scoreMultiplier;
+  
 
     void Awake()
     {
@@ -46,11 +46,6 @@ public class GameController : MonoBehaviour
         {
             sc.LoadScene("OrderGame");
         }
-    }
-
-    public int GetScore()
-    {
-        return (correct * scoreMultiplier);
     }
 
     public string GrabRandomName() // grabbing random name from big list

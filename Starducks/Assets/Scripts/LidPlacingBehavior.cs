@@ -59,12 +59,12 @@ public class LidPlacingBehavior : MonoBehaviour
                     if (isRightClicking)
                     {
                         b.sr.color = Color.green;
-                        gc.correct++;
+                        ScoreHandler.sc.CorrectMove();
                     }
                     else
                     {
                         b.sr.color = Color.yellow;
-                        gc.incorrect++;
+                        ScoreHandler.sc.IncorrectMove();
                     }
                 }
                 if (collision.gameObject.tag == "cold")
@@ -72,12 +72,12 @@ public class LidPlacingBehavior : MonoBehaviour
                     if (!isRightClicking)
                     {
                         b.sr.color = Color.green;
-                        gc.correct++;
+                        ScoreHandler.sc.CorrectMove();
                     }
                     else
                     {
                         b.sr.color = Color.yellow;
-                        gc.incorrect++;
+                        ScoreHandler.sc.IncorrectMove();
                     }
                 }
                 
