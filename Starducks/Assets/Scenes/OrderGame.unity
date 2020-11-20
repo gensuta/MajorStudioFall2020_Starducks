@@ -3406,7 +3406,6 @@ MonoBehaviour:
   maxTime: 18
   timeDif: 1.2
   minTime: 10
-  maxOrders: 8
   currentOrder: -1
   orderText: {fileID: 1309832556}
   slider: {fileID: 819205772}
@@ -6074,6 +6073,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7054865043324172316, guid: 014376d0cfc47e14aa6eaa2d9cbb0f8a,
+        type: 3}
+      propertyPath: maxOrders
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7054865043324172317, guid: 014376d0cfc47e14aa6eaa2d9cbb0f8a,
         type: 3}
       propertyPath: m_LocalPosition.x

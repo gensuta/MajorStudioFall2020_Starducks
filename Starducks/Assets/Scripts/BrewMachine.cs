@@ -36,6 +36,8 @@ public class BrewMachine : MonoBehaviour
 
     List<Order> orders;
 
+    public float brewSpeed;
+
     void Start()
     {
         bm = FindObjectOfType<BrewManager>();
@@ -60,7 +62,7 @@ public class BrewMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isOn) drinkAmount.value += Time.deltaTime;
+        if (isOn) drinkAmount.value += (Time.deltaTime * brewSpeed);
     }
 
     public void PlaceCup(DraggableCup c) // when mouse lets go of a cup over a brew machine
