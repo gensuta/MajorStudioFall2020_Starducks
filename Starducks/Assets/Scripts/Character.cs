@@ -40,8 +40,20 @@ public class Character : ScriptableObject
 
     public Order getOrder()
     {
+        // making sure a drink is actually there first
+        for (int i = 0; i < preferredDrinks.Count; i++)
+        {
+            if (preferredDrinks[i] == null)
+            {
+                preferredDrinks[i] = Drink.CreateRandomDrink();
+            }
+        }
+
+        if (preferredDrinks.Count == 0) preferredDrinks.Add(Drink.CreateRandomDrink());
+
+        if (names.Count == 0) names.Add(GameController.Instance.GrabRandomName());
+
         Order o = new Order(this,getRandName(),getRandDrink());
-        Debug.Log(o.myName + " just ordered " + o.myDrink.getDrinkName());
         return o;
     }
 }

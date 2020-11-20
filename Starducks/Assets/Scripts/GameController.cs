@@ -12,16 +12,17 @@ public class GameController : MonoBehaviour
     [SerializeField]
     string[] namesList; // to be used if we want to give characters random names
 
+    [Space]
+    [Header("Order Stuff")]
 
-    //public Character[] characters; // keeping track of the same characters throughout the game since it's one day
+    public int maxOrders;
 
-    // keeping track of orders instead of characters
     public List<Order> orders;
     public List<Character> currentCustomers; // these characters are ones we can drag into the inspector for the game! If it's empty we'll have all random characters
 
     public int currentOrder; // so we can go through each order for each minigame
 
-    public int score;
+    public int correct,incorrect,scoreMultiplier;
 
     void Awake()
     {
@@ -41,8 +42,17 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       if(sc.IsSceneCalled("StartScreen") && Input.GetKeyDown(KeyCode.Space))
+        {
+            sc.LoadScene("OrderGame");
+        }
     }
+
+    public int GetScore()
+    {
+        return (correct * scoreMultiplier);
+    }
+
     public string GrabRandomName() // grabbing random name from big list
     {
         return namesList[Random.Range(0, namesList.Length)];

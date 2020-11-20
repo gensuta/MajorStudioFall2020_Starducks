@@ -95,9 +95,8 @@ MonoBehaviour:
   nameDoc: {fileID: 4900000, guid: 2277c082c3e29514bb766b1566ccacdd, type: 3}
   namesList: []
   orders: []
-  currentCustomers:
-  - {fileID: 11400000, guid: 0dfc072cc2a80474f8997d3f7bd3e126, type: 2}
-  - {fileID: 11400000, guid: 38c4e6941cad65647ac8b5e4244249a3, type: 2}
-  - {fileID: 11400000, guid: 1c6fbae771109874a905b17bb855bbe2, type: 2}
+  currentCustomers: []
   currentOrder: 0
-  score: 0
+  correct: 0
+  incorrect: 0
+  scoreMultiplier: 0

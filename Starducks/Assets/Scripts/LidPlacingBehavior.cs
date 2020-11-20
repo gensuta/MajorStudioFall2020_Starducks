@@ -42,7 +42,7 @@ public class LidPlacingBehavior : MonoBehaviour
         {
             transitionTime -= Time.deltaTime;
             if (transitionTime < 0f)
-                gc.sc.LoadScene("TrashGame");
+                gc.sc.LoadScene("EndScreen");
         }
     }
 
@@ -56,13 +56,29 @@ public class LidPlacingBehavior : MonoBehaviour
             {
                 if (collision.gameObject.tag == "hot")
                 {
-                    if(isRightClicking) b.sr.color = Color.green;
-                    else b.sr.color = Color.yellow;
+                    if (isRightClicking)
+                    {
+                        b.sr.color = Color.green;
+                        gc.correct++;
+                    }
+                    else
+                    {
+                        b.sr.color = Color.yellow;
+                        gc.incorrect++;
+                    }
                 }
                 if (collision.gameObject.tag == "cold")
                 {
-                    if (!isRightClicking) b.sr.color = Color.green;
-                    else b.sr.color = Color.yellow;
+                    if (!isRightClicking)
+                    {
+                        b.sr.color = Color.green;
+                        gc.correct++;
+                    }
+                    else
+                    {
+                        b.sr.color = Color.yellow;
+                        gc.incorrect++;
+                    }
                 }
                 
                 b.isLidded = true;

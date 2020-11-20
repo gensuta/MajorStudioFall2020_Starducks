@@ -140,16 +140,22 @@ public class BrewMachine : MonoBehaviour
         Debug.Log(newDrink.getDrinkName());
 
         if (rightDrink.doesMatch(newDrink) && (Mathf.Abs(drinkAmount.value - stopPoints[(int)rightDrink.size]) < 0.7f))
+        {
+            GameController.Instance.correct++;
             Debug.Log("nice");
+        }
         else
+        {
+            GameController.Instance.incorrect++;
             Debug.Log("not nice");
+        }
 
         drinkAmount.value = 0;
         Destroy(bm.currentDrinks[currentCup.drinkNum]);
         bm.numSpawned--;
 
         sliderImg.color = Color.white;
-
+        bm.ordersComplete++;
     }
 
     public void Trash()

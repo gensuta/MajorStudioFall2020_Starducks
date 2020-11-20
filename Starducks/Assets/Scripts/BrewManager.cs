@@ -23,9 +23,10 @@ public class BrewManager : MonoBehaviour // perhaps for the player?
     [SerializeField]
     float baseTime, smallTime,mediumTime,largeTime, maxTime, currentTime;
 
+    public int ordersComplete;
     void Start()
     {
-        gc = FindObjectOfType<GameController>();
+        gc = GameController.Instance;
         gc.currentOrder = 0;
         maxTime = CalculateTime();
         currentTime = maxTime;
@@ -37,13 +38,12 @@ public class BrewManager : MonoBehaviour // perhaps for the player?
     {
         currentTime -= Time.deltaTime;
         timeSlider.value = currentTime;
-        
-        if(gc.currentOrder < gc.orders.Count)
+
+        if (currentTime <= 0f || ordersComplete == gc.maxOrders) GameController.Instance.sc.LoadScene("LidGame");
+
+        if (gc.currentOrder < gc.orders.Count && numSpawned < 4)
         {
-            if(numSpawned < 4)
-            {
-                SpawnDrink();
-            }
+            SpawnDrink();
         }
     }
 
@@ -69,7 +69,7 @@ public class BrewManager : MonoBehaviour // perhaps for the player?
         DraggableCup d = g.GetComponent<DraggableCup>();
         d.myDrink = gc.orders[gc.currentOrder].myDrink;
         d.drinkNum = gc.currentOrder;
-        numSpawned++;
         gc.currentOrder++;
+        numSpawned++;
     }
 }
