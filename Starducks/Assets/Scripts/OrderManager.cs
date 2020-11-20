@@ -58,15 +58,15 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
         slider.value = timer;
     }
 
-    void OnToNextOrder(bool finishedOrder = false )
+    void OnToNextOrder(bool finishedOrder = false)
     {
-        if(finishedOrder)
+        if (finishedOrder)
         {
             newOrder.myCharacter = character;
             newOrder.myName = rightOrder.myName; // temporarily here unless we decided to make name stuff a thing
             gc.orders.Add(newOrder);
 
-            if(newOrder.doesMatch(rightOrder))
+            if (newOrder.doesMatch(rightOrder))
             {
                 Debug.Log("Nice!!!");
             }
@@ -76,14 +76,14 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
             }
         }
         maxTime -= timeDif;
-        if(maxTime < minTime)
+        if (maxTime < minTime)
         {
             maxTime = minTime;
         }
         timer = maxTime;
         currentOrder++;
 
-        if(currentOrder == maxOrders)
+        if (currentOrder == maxOrders)
         {
             gc.sc.LoadScene(1); // temporarily goes straight to lid game for testing purposes
         }
@@ -98,7 +98,16 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
         if (gc.currentCustomers.Count > 0) character = gc.GetRandomCharacter();
         else character.CreateRandomCharacter();
 
+        for(int i = 0; i < character.preferredDrinks.Count;i++)
+        {
+            if (character.preferredDrinks[i] == null)
+            {
+                character.preferredDrinks[i] = Drink.CreateRandomDrink();
+            }
+        }
+
         rightOrder = character.getOrder();
+      
 
         orderText.text = "Hi! Can I have a " +  rightOrder.myDrink.getDrinkName();
         currentPanel = 0;
