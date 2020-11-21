@@ -24,6 +24,8 @@ public class GameController : MonoBehaviour
 
     public bool isPaused;
 
+    public TipsMenu tipMenu;
+
     void Awake()
     {
         if (Instance == null)
@@ -36,6 +38,20 @@ public class GameController : MonoBehaviour
         namesList = nameDoc.text.Split('\n'); // splitting text document so each name is grabbed from ea. line
 
         sc = FindObjectOfType<SceneController>();
+
+        if (sc.IsSceneCalled("BrewGame") || sc.IsSceneCalled("LidGame"))
+        {
+            if (orders.Count == 0)
+            {
+                Order o = new Order();
+                Character c = new Character();
+                c.CreateRandomCharacter();
+
+                o = c.getOrder();
+                for (int i = 0; i < maxOrders; i++) orders.Add(o);
+            }
+        }
+        tipMenu = FindObjectOfType<TipsMenu>();
 
     }
 

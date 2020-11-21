@@ -17,32 +17,36 @@ public class LidPlacingBehavior : MonoBehaviour
     void Start()
     {
         gc = GameController.Instance;
+        gc.tipMenu.TogglePopUp();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetMouseButton(0))
+        if (!gc.isPaused)
         {
-            isRightClicking = false;
-            transform.position = lidPos;
-        }
-        else if (Input.GetMouseButton(1))
-        {
-            isRightClicking = true; // rightclick = hot cup lid
-            transform.position = lidPos;
-        }
-        else
-        {
-            isRightClicking = false;
-            transform.position = normPos;
-        }
-        if(gc.currentOrder >= gc.orders.Count)
-        {
-            transitionTime -= Time.deltaTime;
-            if (transitionTime < 0f)
-                gc.sc.LoadScene("EndScreen");
+            if (Input.GetMouseButton(0))
+            {
+                isRightClicking = false;
+                transform.position = lidPos;
+            }
+            else if (Input.GetMouseButton(1))
+            {
+                isRightClicking = true; // rightclick = hot cup lid
+                transform.position = lidPos;
+            }
+            else
+            {
+                isRightClicking = false;
+                transform.position = normPos;
+            }
+            if (gc.currentOrder >= gc.orders.Count)
+            {
+                transitionTime -= Time.deltaTime;
+                if (transitionTime < 0f)
+                    gc.sc.LoadScene("EndScreen");
+            }
         }
     }
 

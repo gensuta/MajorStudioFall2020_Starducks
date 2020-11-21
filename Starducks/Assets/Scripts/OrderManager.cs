@@ -42,6 +42,8 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
         slider.maxValue = maxTime;
 
         gc = GameController.Instance;
+
+        gc.tipMenu.TogglePopUp();
     }
 
     // Update is called once per frame

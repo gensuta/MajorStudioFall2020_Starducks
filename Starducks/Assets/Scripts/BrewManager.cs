@@ -39,6 +39,7 @@ public class BrewManager : MonoBehaviour // perhaps for the player?
             currentOrders.Add(Instantiate(orderPrefab, Vector3.zero, Quaternion.identity, orderHolder.transform));
             currentOrders[i].GetComponentInChildren<TextMeshProUGUI>().text = gc.orders[i].myDrink.getDrinkName();
         }
+        gc.tipMenu.TogglePopUp();
     }
 
     // Update is called once per frame

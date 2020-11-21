@@ -22,27 +22,30 @@ public class DrinkSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gc.currentOrder < gc.orders.Count)
+        if (!gc.isPaused)
         {
-            if(timer >= maxTime)
+            if (gc.currentOrder < gc.orders.Count)
             {
-                if (gc.orders[gc.currentOrder].myDrink.isCold)
+                if (timer >= maxTime)
                 {
-                    GameObject g = Instantiate(coldCup, spawnPos, Quaternion.identity);
-                     CupBehavior b = g.GetComponent<CupBehavior>();
-                    b.orderNum = gc.currentOrder;
+                    if (gc.orders[gc.currentOrder].myDrink.isCold)
+                    {
+                        GameObject g = Instantiate(coldCup, spawnPos, Quaternion.identity);
+                        CupBehavior b = g.GetComponent<CupBehavior>();
+                        b.orderNum = gc.currentOrder;
+                    }
+                    else
+                    {
+                        GameObject g = Instantiate(hotCup, spawnPos, Quaternion.identity);
+                        CupBehavior b = g.GetComponent<CupBehavior>();
+                        b.orderNum = gc.currentOrder;
+                    }
+                    maxTime = Random.Range(0.75f, 2f);
+                    gc.currentOrder++;
+                    timer = 0;
                 }
-                else
-                {
-                    GameObject g = Instantiate(hotCup, spawnPos, Quaternion.identity);
-                    CupBehavior b = g.GetComponent<CupBehavior>();
-                    b.orderNum = gc.currentOrder;
-                }
-                maxTime = Random.Range(0.75f, 2f);
-                gc.currentOrder++;
-                timer = 0;
+                timer += Time.deltaTime;
             }
-            timer += Time.deltaTime;
         }
     }
 }

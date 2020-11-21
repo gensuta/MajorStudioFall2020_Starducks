@@ -15,6 +15,10 @@ public class Order
         myCharacter = c;
         myName = s;
         myDrink = d;
+
+        scores = new Score[3];
+        for (int i = 0; i < scores.Length; i++)
+            scores[i] = new Score();
     }
 
     public Order()
