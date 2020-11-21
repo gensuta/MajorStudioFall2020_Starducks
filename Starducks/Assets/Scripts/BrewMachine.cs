@@ -256,6 +256,23 @@ public class BrewMachine : MonoBehaviour
             {
                 GameController.Instance.orders[simOrder].scores[1].CountStuff(createdDrink,GameController.Instance.orders[simOrder].myDrink,true);
                 GameController.Instance.orders[simOrder].scores[1].AddDistanceBonus(drinkAmount.value, stopPoints[(int)createdDrink.size]);
+
+                simOrder = 0;
+                n = 0;
+                foreach(Order o in orders)
+                {
+                    if (o.myDrink.size == createdDrink.size) similarities++;
+                    if (o.myDrink.isCold == createdDrink.isCold) similarities++;
+                    if (o.myDrink.flavor == createdDrink.flavor) similarities++;
+
+                    if (prevSim < similarities)
+                    {
+                        prevSim = similarities;
+                        simOrder = n;
+                    }
+                    n++;
+                }
+                
                 RemoveOrder(simOrder);
             }
         }
@@ -268,6 +285,7 @@ public class BrewMachine : MonoBehaviour
 
     void RemoveOrder(int num)
     {
+        Debug.Log("Removing..." + num);
         bm.currentOrders[num].SetActive(false);
         orders.Remove(orders[num]);
     }
