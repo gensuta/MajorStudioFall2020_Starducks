@@ -6,6 +6,7 @@ public class CupBehavior : MonoBehaviour
 {
     public bool isLidded;
     public SpriteRenderer sr;
+    public int orderNum;
 
     [SerializeField]
     float moveSpeed, minSpeed,maxSpeed;
@@ -19,6 +20,6 @@ public class CupBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += (Vector3.right * moveSpeed);
+        if(!GameController.Instance.isPaused) transform.position += (Vector3.right * moveSpeed);
     }
 }

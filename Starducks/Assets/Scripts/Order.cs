@@ -8,6 +8,7 @@ public class Order
     public Character myCharacter;
     public string myName; // the name the character decided to use with this order
     public Drink myDrink;
+    public Score[] scores; // 3 scores for each game
 
     public Order(Character c, string s, Drink d)
     {
@@ -18,7 +19,9 @@ public class Order
 
     public Order()
     {
-        
+        scores = new Score[3];
+        for (int i = 0; i < scores.Length; i++) 
+            scores[i] = new Score();
     }
 
     public bool doesMatch(Order o)

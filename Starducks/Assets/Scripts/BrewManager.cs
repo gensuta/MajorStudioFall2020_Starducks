@@ -44,13 +44,15 @@ public class BrewManager : MonoBehaviour // perhaps for the player?
     // Update is called once per frame
     void Update()
     {
-        currentTime -= Time.deltaTime;
-        timeSlider.value = currentTime;
+        if (!gc.isPaused)
+        {
+            currentTime -= Time.deltaTime;
+            timeSlider.value = currentTime;
 
-        if (currentTime <= 0f || ordersComplete == gc.maxOrders) GameController.Instance.sc.LoadScene("LidGame");
+            if (currentTime <= 0f || ordersComplete == gc.maxOrders) GameController.Instance.sc.LoadScene("LidGame");
 
 
-
+        }
 
       /*  if (gc.currentOrder < gc.orders.Count && numSpawned < 4)
         {

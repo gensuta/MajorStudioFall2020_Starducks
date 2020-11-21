@@ -16,7 +16,7 @@ public class LidPlacingBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gc = FindObjectOfType<GameController>();
+        gc = GameController.Instance;
     }
 
     // Update is called once per frame
@@ -59,12 +59,14 @@ public class LidPlacingBehavior : MonoBehaviour
                     if (isRightClicking)
                     {
                         b.sr.color = Color.green;
-                        ScoreHandler.sc.CorrectMove();
+                        gc.orders[b.orderNum].scores[2].CorrectMove();
+                        gc.orders[b.orderNum].scores[2].AddDistanceBonus(collision.transform.position.x, transform.position.x);
                     }
                     else
                     {
                         b.sr.color = Color.yellow;
-                        ScoreHandler.sc.IncorrectMove();
+                        gc.orders[b.orderNum].scores[2].IncorrectMove();
+                        gc.orders[b.orderNum].scores[2].AddDistanceBonus(collision.transform.position.x, transform.position.x);
                     }
                 }
                 if (collision.gameObject.tag == "cold")
@@ -72,12 +74,12 @@ public class LidPlacingBehavior : MonoBehaviour
                     if (!isRightClicking)
                     {
                         b.sr.color = Color.green;
-                        ScoreHandler.sc.CorrectMove();
+                        gc.orders[b.orderNum].scores[2].CorrectMove();
                     }
                     else
                     {
                         b.sr.color = Color.yellow;
-                        ScoreHandler.sc.IncorrectMove();
+                        gc.orders[b.orderNum].scores[2].IncorrectMove();
                     }
                 }
                 

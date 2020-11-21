@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
 
     public int currentOrder; // so we can go through each order for each minigame
 
-  
+    public bool isPaused;
 
     void Awake()
     {
@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(sc.IsSceneCalled("StartScreen") && Input.GetKeyDown(KeyCode.Space))
+       if(sc.IsSceneCalled("StartScreen") && Input.GetMouseButtonDown(0))
         {
             sc.LoadScene("OrderGame");
         }

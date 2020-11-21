@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -62,7 +61,8 @@ public class BrewMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isOn) drinkAmount.value += (Time.deltaTime * brewSpeed);
+        if (!GameController.Instance.isPaused)
+            if (isOn) drinkAmount.value += (Time.deltaTime * brewSpeed);
     }
 
     public void PlaceCup(DraggableCup c) // when mouse lets go of a cup over a brew machine
@@ -182,14 +182,17 @@ public class BrewMachine : MonoBehaviour
             newDrink.drinkType = rightDrink.drinkType;
             newDrink.isCold = isCold;
 
-            if (rightDrink.doesMatch(newDrink) && (Mathf.Abs(drinkAmount.value - stopPoints[(int)rightDrink.size]) < 0.7f))
+
+            //currently irrelevant old code
+
+            /*if (rightDrink.doesMatch(newDrink) && (Mathf.Abs(drinkAmount.value - stopPoints[(int)rightDrink.size]) < 0.7f))
             {
                 ScoreHandler.sc.CorrectMove();
             }
             else
             {
                 ScoreHandler.sc.CorrectMove();
-            }
+            }*/
 
             Destroy(bm.currentDrinks[currentCup.drinkNum]);
             bm.numSpawned--;
@@ -213,30 +216,60 @@ public class BrewMachine : MonoBehaviour
         createdDrink.isCold = isCold;
         createdDrink.flavor = (Flavor)currentFlavor;
 
-        int n = 0;
-        int correctNum = 0;
+        int n = 0, similarities = 0, prevSim = -1, simOrder = -1;
         bool isCorrect = false;
         foreach(Order o in GameController.Instance.orders)
         {
             if (o.myDrink.doesSortaMatch(createdDrink))
             {
+                // int in the score is 1 bc we have 3 games and start at 0 for counting
+                o.scores[1].CountStuff(createdDrink, o.myDrink,true);
+                o.scores[1].AddDistanceBonus(drinkAmount.value, stopPoints[(int)createdDrink.size]);
                 isCorrect = true;
-                correctNum = n;
                 break;
             }
+
+            if (o.myDrink.size == createdDrink.size) similarities++;
+            if (o.myDrink.isCold == createdDrink.isCold) similarities++;
+            if (o.myDrink.flavor == createdDrink.flavor) similarities++;
+
+            if (prevSim < similarities)
+            {
+                prevSim = similarities;
+                simOrder = n;
+            }
+
             n++;
         }
         if(isCorrect)
         {
-            ScoreHandler.sc.CorrectMove();
-            Debug.Log("nice");
-            bm.currentOrders[n].SetActive(false);
-            orders.Remove(orders[n]);
+            RemoveOrder(n);
         }
         else
         {
-            ScoreHandler.sc.IncorrectMove();
+            if(simOrder < 0)
+            {
+                int rand = Random.Range(0, bm.currentOrders.Count);
+                RemoveOrder(rand);
+            }
+            else
+            {
+                GameController.Instance.orders[simOrder].scores[1].CountStuff(createdDrink,GameController.Instance.orders[simOrder].myDrink,true);
+                GameController.Instance.orders[simOrder].scores[1].AddDistanceBonus(drinkAmount.value, stopPoints[(int)createdDrink.size]);
+                RemoveOrder(simOrder);
+            }
         }
+    }
+
+    // similarities 
+    // prev sim
+    // sim order
+    // remove function
+
+    void RemoveOrder(int num)
+    {
+        bm.currentOrders[num].SetActive(false);
+        orders.Remove(orders[num]);
     }
 
     public void Trash()

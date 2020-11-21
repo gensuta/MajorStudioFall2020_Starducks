@@ -38,6 +38,7 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
     // Start is called before the first frame update
     void Start()
     {
+        currentOrder = 0;
         slider.maxValue = maxTime;
 
         gc = GameController.Instance;
@@ -46,16 +47,41 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
     // Update is called once per frame
     void Update()
     {
-        if (currentOrder < gc.maxOrders) // max orders per round. something we can alter and tune ourseves
+        if (!gc.isPaused)
         {
-            if (timer <= 0)
+            if (currentOrder < gc.maxOrders) // max orders per round. something we can alter and tune ourseves
             {
-                OnToNextOrder();
+                if (timer <= 0)
+                {
+                    if (gc.orders.Count == 0) ShowFirstOrder();
+                    else OnToNextOrder();
+                }
+                timer -= Time.deltaTime;
+
             }
-            timer -= Time.deltaTime;
-            
+            slider.value = timer;
         }
-        slider.value = timer;
+    }
+
+    void ShowFirstOrder()
+    {
+        slider.maxValue = maxTime;
+        timer = maxTime;
+
+        newOrder = new Order();
+        newOrder.myDrink = new Drink();
+        character = new Character();
+        rightOrder = new Order();
+
+        if (gc.currentCustomers.Count > 0) character = gc.GetRandomCharacter();
+        else character.CreateRandomCharacter();
+
+        rightOrder = character.getOrder();
+
+
+        orderText.text = "Hi! Can I have a " + rightOrder.myDrink.getDrinkName();
+        currentPanel = 0;
+        ShowPanel();
     }
 
     void OnToNextOrder(bool finishedOrder = false)
@@ -66,20 +92,18 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
             newOrder.myName = rightOrder.myName; // temporarily here unless we decided to make name stuff a thing
             gc.orders.Add(newOrder);
 
-            if (newOrder.doesMatch(rightOrder))
-            {
-                ScoreHandler.sc.CorrectMove();
-            }
-            else
-            {
-                ScoreHandler.sc.CorrectMove();
-            }
+            gc.orders[gc.orders.Count - 1].scores[0].CountStuff(newOrder.myDrink, rightOrder.myDrink);
+            gc.orders[gc.orders.Count - 1].scores[0].AddTimeBonus(maxTime, timer);
         }
         else
         {
-            ScoreHandler.sc.IncorrectMove();
-            gc.orders.Add(rightOrder);
+            if (timer <= 0f)
+            {
+                gc.orders[gc.orders.Count - 1].scores[0].CountStuff(newOrder.myDrink, rightOrder.myDrink);
+                gc.orders.Add(rightOrder);
+            }
         }
+
 
         maxTime -= timeDif;
         if (maxTime < minTime)

@@ -15,7 +15,7 @@ public class DrinkSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gc = FindObjectOfType<GameController>();
+        gc = GameController.Instance;
         gc.currentOrder = 0; // setting back to 0 everytime we start a new minigame!!
     }
 
@@ -27,9 +27,17 @@ public class DrinkSpawner : MonoBehaviour
             if(timer >= maxTime)
             {
                 if (gc.orders[gc.currentOrder].myDrink.isCold)
-                    Instantiate(coldCup, spawnPos, Quaternion.identity);
+                {
+                    GameObject g = Instantiate(coldCup, spawnPos, Quaternion.identity);
+                     CupBehavior b = g.GetComponent<CupBehavior>();
+                    b.orderNum = gc.currentOrder;
+                }
                 else
-                    Instantiate(hotCup, spawnPos, Quaternion.identity);
+                {
+                    GameObject g = Instantiate(hotCup, spawnPos, Quaternion.identity);
+                    CupBehavior b = g.GetComponent<CupBehavior>();
+                    b.orderNum = gc.currentOrder;
+                }
                 maxTime = Random.Range(0.75f, 2f);
                 gc.currentOrder++;
                 timer = 0;
