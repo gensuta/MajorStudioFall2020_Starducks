@@ -257,6 +257,7 @@ public class BrewMachine : MonoBehaviour
                 GameController.Instance.orders[simOrder].scores[1].CountStuff(createdDrink,GameController.Instance.orders[simOrder].myDrink,true);
                 GameController.Instance.orders[simOrder].scores[1].AddDistanceBonus(drinkAmount.value, stopPoints[(int)createdDrink.size]);
 
+                prevSim = 0;
                 simOrder = 0;
                 n = 0;
                 foreach(Order o in orders)

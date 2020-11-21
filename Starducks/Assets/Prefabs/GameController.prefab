@@ -578,7 +578,7 @@ MonoBehaviour:
   sc: {fileID: 0}
   nameDoc: {fileID: 4900000, guid: 2277c082c3e29514bb766b1566ccacdd, type: 3}
   namesList: []
-  maxOrders: 5
+  maxOrders: 8
   orders: []
   currentCustomers: []
   currentOrder: 0

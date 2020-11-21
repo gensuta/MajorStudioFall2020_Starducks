@@ -402,7 +402,7 @@ PrefabInstance:
     - target: {fileID: 7054865043324172316, guid: 014376d0cfc47e14aa6eaa2d9cbb0f8a,
         type: 3}
       propertyPath: maxOrders
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7054865043324172316, guid: 014376d0cfc47e14aa6eaa2d9cbb0f8a,
         type: 3}
@@ -519,8 +519,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d28a3e63de2cd5e4fb7e99867eefa401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minMaxTime: 0.65
+  timeDif: 0.25
+  realMaxTime: 1.5
   hotCup: {fileID: 6236225085711127650, guid: bdaea6e3ee2b005429dd71f6d7369674, type: 3}
   coldCup: {fileID: 6080753307285180196, guid: 8800d53ecfe258e4bb1d0969db638983, type: 3}
+  cupSpeed: 0.075
   spawnPos: {x: -10, y: -3, z: 0}
 --- !u!4 &1646275230
 Transform:

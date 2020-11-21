@@ -43,12 +43,15 @@ public class GameController : MonoBehaviour
         {
             if (orders.Count == 0)
             {
-                Order o = new Order();
-                Character c = new Character();
-                c.CreateRandomCharacter();
+                for (int i = 0; i < maxOrders; i++)
+                {
+                    Order o = new Order();
+                    Character c = new Character();
+                    c.CreateRandomCharacter();
 
-                o = c.getOrder();
-                for (int i = 0; i < maxOrders; i++) orders.Add(o);
+                    o = c.getOrder();
+                    orders.Add(o);
+                }
             }
         }
         tipMenu = FindObjectOfType<TipsMenu>();
