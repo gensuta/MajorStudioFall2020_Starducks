@@ -226,7 +226,7 @@ public class BrewMachine : MonoBehaviour
             {
                 // int in the score is 1 bc we have 3 games and start at 0 for counting
                 o.scores[1].CountStuff(createdDrink, o.myDrink,true);
-                o.scores[1].AddDistanceBonus(drinkAmount.value, stopPoints[(int)createdDrink.size]);
+                o.scores[1].BrewGameDistBonus(drinkAmount.value, stopPoints[(int)createdDrink.size]);
                 isCorrect = true;
                 break;
             }
@@ -257,7 +257,7 @@ public class BrewMachine : MonoBehaviour
             else
             {
                 GameController.Instance.orders[simOrder].scores[1].CountStuff(createdDrink,GameController.Instance.orders[simOrder].myDrink,true);
-                GameController.Instance.orders[simOrder].scores[1].AddDistanceBonus(drinkAmount.value, stopPoints[(int)createdDrink.size]);
+                GameController.Instance.orders[simOrder].scores[1].BrewGameDistBonus(drinkAmount.value, stopPoints[(int)createdDrink.size]);
 
                 prevSim = 0;
                 simOrder = 0;

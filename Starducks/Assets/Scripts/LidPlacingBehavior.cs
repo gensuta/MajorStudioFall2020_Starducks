@@ -68,13 +68,11 @@ public class LidPlacingBehavior : MonoBehaviour
                     {
                         b.sr.color = Color.green;
                         gc.orders[b.orderNum].scores[2].CorrectMove();
-                        gc.orders[b.orderNum].scores[2].AddDistanceBonus(collision.transform.position.x, transform.position.x);
                     }
                     else
                     {
                         b.sr.color = Color.yellow;
                         gc.orders[b.orderNum].scores[2].IncorrectMove();
-                        gc.orders[b.orderNum].scores[2].AddDistanceBonus(collision.transform.position.x, transform.position.x);
                     }
                 }
                 if (collision.gameObject.tag == "cold")
@@ -90,7 +88,9 @@ public class LidPlacingBehavior : MonoBehaviour
                         gc.orders[b.orderNum].scores[2].IncorrectMove();
                     }
                 }
-                
+
+                gc.orders[b.orderNum].scores[2].LidGameBonus(collision.transform.position.x, transform.position.x);
+
                 b.isLidded = true;
             }
         }

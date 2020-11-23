@@ -50,7 +50,11 @@ public class BrewManager : MonoBehaviour // perhaps for the player?
             currentTime -= Time.deltaTime;
             timeSlider.value = currentTime;
 
-            if (currentTime <= 0f || ordersComplete == gc.maxOrders) GameController.Instance.sc.LoadScene("LidGame");
+            if (currentTime <= 0f || ordersComplete == gc.maxOrders)
+            {
+                gc.orders[ordersComplete - 1].scores[1].BrewGameTimeBonus(currentTime, maxTime);
+                GameController.Instance.sc.LoadScene("LidGame");
+            }
 
 
         }

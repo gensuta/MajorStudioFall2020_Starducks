@@ -95,7 +95,7 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
             gc.orders.Add(newOrder);
 
             gc.orders[gc.orders.Count - 1].scores[0].CountStuff(newOrder.myDrink, rightOrder.myDrink);
-            gc.orders[gc.orders.Count - 1].scores[0].AddTimeBonus(maxTime, timer);
+            gc.orders[gc.orders.Count - 1].scores[0].OrderGameBonus(maxTime, timer);
         }
         else
         {

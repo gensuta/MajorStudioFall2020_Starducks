@@ -115,34 +115,89 @@ public class Score
         incorrect++;
 
     }
-    public void AddTimeBonus(float maxTime, float yourTime)
+    
+    public void BrewGameTimeBonus(float m, float y)
     {
-        float timeLeft = maxTime - yourTime;
-        float timePercent = (timeLeft * 100f) / maxTime;
+        float timeLeft = m - y;
+        float timePercent = (timeLeft * 100f) / y;
 
-        if (timePercent > 50) myBonus += ScoreHandler.sc.scorebonuses[3];
-        if (timePercent > 25 && timePercent <= 50) myBonus += ScoreHandler.sc.scorebonuses[2];
-        if (timePercent > 10 && timePercent <= 25) myBonus += ScoreHandler.sc.scorebonuses[1];
-        if (timePercent < 10) myBonus += ScoreHandler.sc.scorebonuses[0];
-
-        //10% 25% 50%
+        if (timePercent > 50) 
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
+        if (timePercent > 25 && timePercent <= 50)
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
+        if (timePercent > 10 && timePercent <= 25)
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
+        if (timePercent < 10)
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
     }
 
-    public void AddDistanceBonus(float pos, float yourPos) // for cup line and lid placement. lid sends x, cup sends y
+    public void OrderGameBonus(float m, float y)
     {
-        float dist = Mathf.Abs(pos - yourPos);
-        float distPercent = (dist * 100f) / pos;
+        float timeLeft = m - y;
+        float timePercent = (timeLeft * 100f) / y;
 
-        if (distPercent > 50) myBonus += ScoreHandler.sc.scorebonuses[3];
-        if (distPercent > 25 && distPercent <= 50) myBonus += ScoreHandler.sc.scorebonuses[2];
-        if (distPercent > 10 && distPercent <= 25) myBonus += ScoreHandler.sc.scorebonuses[1];
-        if (distPercent < 10) myBonus += ScoreHandler.sc.scorebonuses[0];
+        if (timePercent > 50)
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
+        if (timePercent > 25 && timePercent <= 50)
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
+        if (timePercent > 10 && timePercent <= 25)
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
+        if (timePercent < 10)
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
+    }
+
+    public void LidGameBonus(float p, float y)
+    {
+        float timeLeft = p - y;
+        float timePercent = (timeLeft * 100f) / p;
+
+        if (timePercent > 50)
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
+        if (timePercent > 25 && timePercent <= 50)
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
+        if (timePercent > 10 && timePercent <= 25)
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
+        if (timePercent < 10)
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
+    }
+
+    public void BrewGameDistBonus(float p, float y)
+    {
+        float timeLeft = p - y;
+        float timePercent = (timeLeft * 100f) / p;
+
+        if (timePercent > 50)
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
+        if (timePercent > 25 && timePercent <= 50)
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
+        if (timePercent > 10 && timePercent <= 25)
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
+        if (timePercent < 10)
+            AddBonus(ScoreHandler.sc.scorebonuses[0]); // temporarily adding the same score until it gets changed!
+    }
+
+    void AddBonus(int n)
+    {
+        myBonus += n;
     }
 
     public int GetScore()
     {
         return (correct * ScoreHandler.sc.scoreMultiplier) + myBonus;
     }
+
+
+    /*  void AddDistanceBonus(float pos, float yourPos) // for cup line and lid placement. lid sends x, cup sends y
+      {
+          float dist = Mathf.Abs(pos - yourPos);
+          float distPercent = (dist * 100f) / pos;
+
+          if (distPercent > 50) myBonus += ScoreHandler.sc.scorebonuses[7];
+          if (distPercent > 25 && distPercent <= 50) myBonus += ScoreHandler.sc.scorebonuses[6];
+          if (distPercent > 10 && distPercent <= 25) myBonus += ScoreHandler.sc.scorebonuses[5];
+          if (distPercent < 10) myBonus += ScoreHandler.sc.scorebonuses[4];
+      }*/
+
 
 
 }
