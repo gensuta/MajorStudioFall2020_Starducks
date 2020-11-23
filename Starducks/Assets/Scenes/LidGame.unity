@@ -524,6 +524,7 @@ MonoBehaviour:
   realMaxTime: 1.5
   hotCup: {fileID: 6236225085711127650, guid: bdaea6e3ee2b005429dd71f6d7369674, type: 3}
   coldCup: {fileID: 6080753307285180196, guid: 8800d53ecfe258e4bb1d0969db638983, type: 3}
+  lastObj: {fileID: 0}
   cupSpeed: 0.075
   spawnPos: {x: -10, y: -3, z: 0}
 --- !u!4 &1646275230
