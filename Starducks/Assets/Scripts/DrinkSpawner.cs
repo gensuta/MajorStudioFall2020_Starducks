@@ -5,9 +5,15 @@ using UnityEngine;
 public class DrinkSpawner : MonoBehaviour
 {
     float timer, maxTime;
+    [SerializeField]
+    float minMaxTime, timeDif, realMaxTime;
     public GameObject hotCup, coldCup, lastObj;
-
     GameController gc;
+
+    [SerializeField]
+    float cupSpeed;
+
+
 
     // in case you don't know, serializefields are for when you want to edit an object in the inspector
     // but you don't necessarily want it to be a public game object that other scripts can accidentally edit
@@ -43,7 +49,15 @@ public class DrinkSpawner : MonoBehaviour
                         b.orderNum = gc.currentOrder;
                         lastObj = g;
                     }
-                    maxTime = Random.Range(0.75f, 2f);
+                    maxTime -= timeDif;
+                    if(maxTime <= 0)
+                    {
+                        maxTime = realMaxTime;
+                    }
+                    else if(maxTime < minMaxTime)
+                    {
+                        maxTime = minMaxTime;
+                    }
                     gc.currentOrder++;
                     timer = 0;
                 }

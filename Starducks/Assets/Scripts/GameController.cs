@@ -45,13 +45,11 @@ public class GameController : MonoBehaviour
             {
                 for (int i = 0; i < maxOrders; i++)
                 {
-
                     Order o = new Order();
                     Character c = new Character();
                     c.CreateRandomCharacter();
 
                     o = c.getOrder();
-
                     orders.Add(o);
                 }
             }
