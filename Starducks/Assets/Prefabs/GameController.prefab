@@ -177,9 +177,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 041a0c589b21f20409f7a9edeca29f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scorebonuses: 050000000a0000000f00000014000000
   totalScore: 0
-  scoreMultiplier: 1
+  scoreMultiplier: 5
+  orderTimeBonus: 00000000000000000000000000000000
+  brewTimeBonus: 00000000000000000000000000000000
+  brewDistanceBonus: 00000000000000000000000000000000
+  lidDistanceBonus: 00000000000000000000000000000000
+  allCorrectBonus: 20
 --- !u!1 &5954894365117966245
 GameObject:
   m_ObjectHideFlags: 0
