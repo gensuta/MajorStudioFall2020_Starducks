@@ -117,12 +117,14 @@ public class BrewMachine : MonoBehaviour
 
     public void NextFlavor()
     {
-        if(currentFlavor < (int)Flavor.max -1) currentFlavor++;
+        if (currentFlavor < (int)Flavor.max - 1) currentFlavor++;
+        else currentFlavor = 1;
         flavorText.text = ToFlavor(currentFlavor);
     }
     public void PrevFlavor()
     {
         if (currentFlavor > (int)Flavor.min + 1) currentFlavor--;
+        else currentFlavor = (int)Flavor.PumpkinSpice;
         flavorText.text = ToFlavor(currentFlavor);
     }
 
@@ -257,6 +259,7 @@ public class BrewMachine : MonoBehaviour
                 GameController.Instance.orders[simOrder].scores[1].CountStuff(createdDrink,GameController.Instance.orders[simOrder].myDrink,true);
                 GameController.Instance.orders[simOrder].scores[1].AddDistanceBonus(drinkAmount.value, stopPoints[(int)createdDrink.size]);
 
+                prevSim = 0;
                 simOrder = 0;
                 n = 0;
                 foreach(Order o in orders)

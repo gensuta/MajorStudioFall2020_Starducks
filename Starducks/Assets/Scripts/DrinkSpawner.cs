@@ -5,7 +5,8 @@ using UnityEngine;
 public class DrinkSpawner : MonoBehaviour
 {
     float timer, maxTime;
-    public GameObject hotCup, coldCup;
+    public GameObject hotCup, coldCup, lastObj;
+
     GameController gc;
 
     // in case you don't know, serializefields are for when you want to edit an object in the inspector
@@ -33,12 +34,14 @@ public class DrinkSpawner : MonoBehaviour
                         GameObject g = Instantiate(coldCup, spawnPos, Quaternion.identity);
                         CupBehavior b = g.GetComponent<CupBehavior>();
                         b.orderNum = gc.currentOrder;
+                        lastObj = g;
                     }
                     else
                     {
                         GameObject g = Instantiate(hotCup, spawnPos, Quaternion.identity);
                         CupBehavior b = g.GetComponent<CupBehavior>();
                         b.orderNum = gc.currentOrder;
+                        lastObj = g;
                     }
                     maxTime = Random.Range(0.75f, 2f);
                     gc.currentOrder++;

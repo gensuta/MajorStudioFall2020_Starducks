@@ -43,9 +43,13 @@ public class LidPlacingBehavior : MonoBehaviour
             }
             if (gc.currentOrder >= gc.orders.Count)
             {
-                transitionTime -= Time.deltaTime;
-                if (transitionTime < 0f)
-                    gc.sc.LoadScene("EndScreen");
+                DrinkSpawner ds = FindObjectOfType<DrinkSpawner>();
+                if (Vector3.Distance(ds.lastObj.transform.position, transform.position) > 5f)
+                {
+                    transitionTime -= Time.deltaTime;
+                    if (transitionTime < 0f)
+                        gc.sc.LoadScene("EndScreen");
+                }
             }
         }
     }
