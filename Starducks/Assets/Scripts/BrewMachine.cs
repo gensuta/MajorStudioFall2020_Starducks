@@ -26,6 +26,9 @@ public class BrewMachine : MonoBehaviour
     [SerializeField]
     Image[] cups;
 
+    [SerializeField]
+    Button[] buttons;
+
     BrewManager bm;
 
     DraggableCup currentCup;
@@ -103,8 +106,8 @@ public class BrewMachine : MonoBehaviour
     public void ToggleTemperature()
     {
         isCold = !isCold;
-        if (isCold) toggleText.text = "Switch to cold";
-        else toggleText.text = "Switch to hot";
+        if (!isCold) toggleText.text = "Switch to cold";
+        else toggleText.text = "Switch to \nhot";
 
         foreach(Image i in cups)
         {
@@ -135,11 +138,15 @@ public class BrewMachine : MonoBehaviour
             isOn = true;
             stopLine.gameObject.SetActive(true);
             PlaceStopLine();
+            foreach (Button b in buttons)
+                b.interactable = false;
         }
         else
         {
             isOn = false;
             stopLine.gameObject.SetActive(false);
+            foreach (Button b in buttons)
+                b.interactable = true;
 
         }
     }

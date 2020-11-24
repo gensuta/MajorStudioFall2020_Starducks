@@ -66,8 +66,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Tips
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2de941a1752f8594cb27dec56ba1ee86, type: 2}
+  m_sharedMaterial: {fileID: -232601067750671149, guid: 2de941a1752f8594cb27dec56ba1ee86,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -249,8 +250,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Here's some instructions or whatever
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2de941a1752f8594cb27dec56ba1ee86, type: 2}
+  m_sharedMaterial: {fileID: -232601067750671149, guid: 2de941a1752f8594cb27dec56ba1ee86,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
