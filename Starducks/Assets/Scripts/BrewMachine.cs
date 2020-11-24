@@ -227,7 +227,7 @@ public class BrewMachine : MonoBehaviour
 
         int n = 0, similarities = 0, prevSim = -1, simOrder = -1;
         bool isCorrect = false;
-        foreach(Order o in GameController.Instance.orders)
+        foreach(Order o in orders)
         {
             if (o.myDrink.doesSortaMatch(createdDrink))
             {
