@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="EncodableAsset" id="{b41b30b3-a6c3-483c-b6b5-42c17756181e}">
+		<property name="assetPath">
+			<value>GenOrder/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e524eee3-bc89-4047-ad08-0059e8dc0daf}</destination>
+		</relationship>
+	</object>
+</objects>

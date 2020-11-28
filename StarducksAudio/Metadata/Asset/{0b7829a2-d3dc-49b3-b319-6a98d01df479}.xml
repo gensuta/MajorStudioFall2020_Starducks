@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="EncodableAsset" id="{0b7829a2-d3dc-49b3-b319-6a98d01df479}">
+		<property name="assetPath">
+			<value>SantiOrder/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e524eee3-bc89-4047-ad08-0059e8dc0daf}</destination>
+		</relationship>
+	</object>
+</objects>
