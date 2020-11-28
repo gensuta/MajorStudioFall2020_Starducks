@@ -43,6 +43,8 @@ public class BrewMachine : MonoBehaviour
 
     public float brewSpeed;
 
+    bool playOnce;
+
     void Start()
     {
         bm = FindObjectOfType<BrewManager>();
@@ -72,7 +74,17 @@ public class BrewMachine : MonoBehaviour
         if (!GameController.Instance.isPaused)
         {
             if (isOn)
+            {
                 drinkAmount.value += (Time.deltaTime * brewSpeed);
+
+                if (!playOnce)
+                {
+                    if (isCold) FMODUnity.RuntimeManager.PlayOneShot("event:/BrewGame/PourCold");
+                    else FMODUnity.RuntimeManager.PlayOneShot("event:/BrewGame/PourHot");
+                    playOnce = true;
+                }
+            }
+            else playOnce = false;
 
 
             if (drinkAmount.value <= 0)
@@ -133,10 +145,12 @@ public class BrewMachine : MonoBehaviour
         rightDrink = null;
         sliderImg.color = Color.gray;
         chosenSize = (Size)s;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/BrewGame/CupPlace");
     }
 
     string ToFlavor(int flavorNum) // placing this here because enums can't have spaces ;-;
     {
+       
         Flavor f = (Flavor)flavorNum;
         if (f.ToString() == Flavor.SaltedCaramel.ToString())
             return "Salted Caramel";
@@ -157,6 +171,7 @@ public class BrewMachine : MonoBehaviour
 
     public void ToggleTemperature()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/BrewGame/SettingSelect");
         isCold = !isCold;
         if (!isCold) toggleText.text = "Switch to cold";
         else toggleText.text = "Switch to \nhot";
@@ -172,12 +187,14 @@ public class BrewMachine : MonoBehaviour
 
     public void NextFlavor()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/BrewGame/SettingSelect");
         if (currentFlavor < (int)Flavor.max - 1) currentFlavor++;
         else currentFlavor = 1;
         flavorText.text = ToFlavor(currentFlavor);
     }
     public void PrevFlavor()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/BrewGame/SettingSelect");
         if (currentFlavor > (int)Flavor.min + 1) currentFlavor--;
         else currentFlavor = (int)Flavor.PumpkinSpice;
         flavorText.text = ToFlavor(currentFlavor);
@@ -185,6 +202,7 @@ public class BrewMachine : MonoBehaviour
 
     public void Brew()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/BrewGame/StartStopBrew");
         if (!isOn)
         {
             isOn = true;
@@ -192,8 +210,11 @@ public class BrewMachine : MonoBehaviour
             trashButton.interactable = false;
             serveButton.interactable = false;
             PlaceStopLine();
-          /*  foreach (Button b in buttons)
-                b.interactable = false;*/
+
+           
+
+            /*  foreach (Button b in buttons)
+                  b.interactable = false;*/
         }
         else
         {
@@ -360,6 +381,7 @@ public class BrewMachine : MonoBehaviour
     {
         drinkAmount.value = 0;
         sliderImg.color = Color.white;
-/*        Destroy(bm.currentDrinks[currentCup.drinkNum]);*/
+        FMODUnity.RuntimeManager.PlayOneShot("event:/BrewGame/TrashDrink");
+        /*        Destroy(bm.currentDrinks[currentCup.drinkNum]);*/
     }
 }

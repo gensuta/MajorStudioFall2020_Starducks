@@ -66,12 +66,14 @@ public class LidPlacingBehavior : MonoBehaviour
                 {
                     if (isRightClicking)
                     {
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/LidGame/HotLid");
                         b.sr.color = Color.green;
                         gc.orders[b.orderNum].scores[2].CorrectMove();
                         gc.orders[b.orderNum].scores[2].LidGameBonus(collision.transform.position.x, transform.position.x);
                     }
                     else
                     {
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/LidGame/ColdLid");
                         b.sr.color = Color.yellow;
                         gc.orders[b.orderNum].scores[2].IncorrectMove();
                     }
@@ -80,12 +82,14 @@ public class LidPlacingBehavior : MonoBehaviour
                 {
                     if (!isRightClicking)
                     {
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/LidGame/ColdLid");
                         b.sr.color = Color.green;
                         gc.orders[b.orderNum].scores[2].CorrectMove();
                         gc.orders[b.orderNum].scores[2].LidGameBonus(collision.transform.position.x, transform.position.x);
                     }
                     else
                     {
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/LidGame/HotLid");
                         b.sr.color = Color.yellow;
                         gc.orders[b.orderNum].scores[2].IncorrectMove();
                     }

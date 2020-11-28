@@ -78,45 +78,60 @@ public class Score
     {
         if (isBrewGame)
         {
-            if (myDrink.isCold == correctDrink.isCold) CorrectMove();
-            else IncorrectMove();
+            if (myDrink.isCold == correctDrink.isCold) CorrectMove(false);
+            else IncorrectMove(false);
 
-            if (myDrink.flavor == correctDrink.flavor) CorrectMove();
-            else IncorrectMove();
+            if (myDrink.flavor == correctDrink.flavor) CorrectMove(false);
+            else IncorrectMove(false);
 
-            if (myDrink.size == correctDrink.size) CorrectMove();
-            else IncorrectMove();
+            if (myDrink.size == correctDrink.size) CorrectMove(false);
+            else IncorrectMove(false);
 
-            if (correct == 3) myBonus += ScoreHandler.sc.allCorrectBonus;
+            if (correct == 3)
+            {
+                myBonus += ScoreHandler.sc.allCorrectBonus;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/CorrectDing");
+            }
+            else
+                FMODUnity.RuntimeManager.PlayOneShot("event:/InorrectDing");
+
         }
         else
         {
-            if (myDrink.isCold == correctDrink.isCold) CorrectMove();
-            else IncorrectMove();
+            if (myDrink.isCold == correctDrink.isCold) CorrectMove(false);
+            else IncorrectMove(false);
 
-            if (myDrink.flavor == correctDrink.flavor) CorrectMove();
-            else IncorrectMove();
+            if (myDrink.flavor == correctDrink.flavor) CorrectMove(false);
+            else IncorrectMove(false);
 
-            if (myDrink.size == correctDrink.size) CorrectMove();
-            else IncorrectMove();
+            if (myDrink.size == correctDrink.size) CorrectMove(false);
+            else IncorrectMove(false);
 
-            if (myDrink.drinkType == correctDrink.drinkType) CorrectMove();
-            else IncorrectMove();
+            if (myDrink.drinkType == correctDrink.drinkType) CorrectMove(false);
+            else IncorrectMove(false);
 
-            if (correct == 4) myBonus += ScoreHandler.sc.allCorrectBonus;
+            if (correct == 4)
+            {
+                myBonus += ScoreHandler.sc.allCorrectBonus;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/CorrectDing");
+            }
+            else
+                FMODUnity.RuntimeManager.PlayOneShot("event:/InorrectDing");
         }
 
     }
 
-    public void CorrectMove()
+    public void CorrectMove(bool isLidGame = true)
     {
-        Debug.Log("correct!");
+        if(isLidGame)
+        FMODUnity.RuntimeManager.PlayOneShot("event:/CorrectDing");
         correct++;
     }
 
-    public void IncorrectMove()
+    public void IncorrectMove(bool isOrderingGame = false)
     {
-        Debug.Log("incorrect!!");
+        if (!isOrderingGame)
+            FMODUnity.RuntimeManager.PlayOneShot("event:/IncorrectDing");
         incorrect++;
 
     }
