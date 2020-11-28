@@ -29,6 +29,9 @@ public class BrewMachine : MonoBehaviour
     [SerializeField]
     Button[] buttons;
 
+    [SerializeField]
+    Button serveButton, flavorLeft, flavorRight, trashButton, brewButton;
+
     BrewManager bm;
 
     DraggableCup currentCup;
@@ -59,13 +62,62 @@ public class BrewMachine : MonoBehaviour
             else
                 i.color = Color.red;
         }
+        trashButton.interactable = false;
+        sliderImg.color = Color.white;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!GameController.Instance.isPaused)
-            if (isOn) drinkAmount.value += (Time.deltaTime * brewSpeed);
+        {
+            if (isOn)
+                drinkAmount.value += (Time.deltaTime * brewSpeed);
+
+
+            if (drinkAmount.value <= 0)
+            {
+                if (!isOn)
+                    serveButton.interactable = false;
+                flavorLeft.interactable = true;
+                flavorRight.interactable = true;
+
+                //ik the bottom is messy but we're just disabling the cups at the top of the machine - Geneva
+                buttons[4].interactable = true;
+                buttons[5].interactable = true;
+                buttons[6].interactable = true;
+                buttons[7].interactable = true;
+            }
+            else
+            {
+                if (!isOn)
+                    serveButton.interactable = true;
+                flavorLeft.interactable = false;
+                flavorRight.interactable = false;
+
+                //ik the bottom is messy but we're just disabling the cups at the top of the machine - Geneva
+                buttons[4].interactable = false;
+                buttons[5].interactable = false;
+                buttons[6].interactable = false;
+                buttons[7].interactable = false;
+            }
+
+            if (sliderImg.color == Color.white)
+            {
+                brewButton.interactable = false;
+                if (!isOn)
+                    trashButton.interactable = false;
+            }
+            else
+            {
+                brewButton.interactable = true;
+
+                if(!isOn)
+                trashButton.interactable = true;
+            }
+        }
+
+
     }
 
     public void PlaceCup(DraggableCup c) // when mouse lets go of a cup over a brew machine
@@ -137,16 +189,20 @@ public class BrewMachine : MonoBehaviour
         {
             isOn = true;
             stopLine.gameObject.SetActive(true);
+            trashButton.interactable = false;
+            serveButton.interactable = false;
             PlaceStopLine();
-            foreach (Button b in buttons)
-                b.interactable = false;
+          /*  foreach (Button b in buttons)
+                b.interactable = false;*/
         }
         else
         {
             isOn = false;
             stopLine.gameObject.SetActive(false);
-            foreach (Button b in buttons)
-                b.interactable = true;
+            trashButton.interactable = true;
+            serveButton.interactable = true;
+           /* foreach (Button b in buttons)
+                b.interactable = true;*/
 
         }
     }
@@ -304,6 +360,6 @@ public class BrewMachine : MonoBehaviour
     {
         drinkAmount.value = 0;
         sliderImg.color = Color.white;
-/*        Destroy(bm.currentDrinks[currentCup.drinkNum]);
-*/    }
+/*        Destroy(bm.currentDrinks[currentCup.drinkNum]);*/
+    }
 }
