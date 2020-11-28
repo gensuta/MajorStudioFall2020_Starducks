@@ -127,13 +127,13 @@ public class Score
         Mathf.Abs(timeLeft);
         float timePercent = (timeLeft * 100f) / y;
 
-        if (timePercent > 50) 
+        if (timePercent > 35) 
             AddBonus(ScoreHandler.sc.brewTimeBonus[3]); // temporarily adding the same score until it gets changed!
-        if (timePercent > 25 && timePercent <= 50)
+        if (timePercent > 20 && timePercent <= 35)
             AddBonus(ScoreHandler.sc.brewTimeBonus[2]); // temporarily adding the same score until it gets changed!
-        if (timePercent > 10 && timePercent <= 25)
+        if (timePercent > 8 && timePercent <= 20)
             AddBonus(ScoreHandler.sc.brewTimeBonus[1]); // temporarily adding the same score until it gets changed!
-        if (timePercent < 10 && timePercent > 0)
+        if (timePercent < 8 && timePercent > 0)
             AddBonus(ScoreHandler.sc.brewTimeBonus[0]); // temporarily adding the same score until it gets changed!
     }
 
@@ -175,13 +175,13 @@ public class Score
         Mathf.Abs(timeLeft);
         Debug.Log(timeLeft);
 
-        if (timeLeft > 25 && timeLeft <= 50)
+        if (timeLeft > 0.2 && timeLeft <= 0.3)
             AddBonus(ScoreHandler.sc.brewDistanceBonus[0]); // temporarily adding the same score until it gets changed!
-        if (timeLeft > 10 && timeLeft <= 25)
+        if (timeLeft > 0.1 && timeLeft <= 0.2)
             AddBonus(ScoreHandler.sc.brewDistanceBonus[1]); // temporarily adding the same score until it gets changed!
-        if (timeLeft < 10 && timeLeft > 0)
+        if (timeLeft < 0.05 && timeLeft > 0.1)
             AddBonus(ScoreHandler.sc.brewDistanceBonus[2]);
-        if (timeLeft == 0)
+        if (timeLeft <= 0.05)
             AddBonus(ScoreHandler.sc.brewDistanceBonus[3]);// temporarily adding the same score until it gets changed!
     }
 
