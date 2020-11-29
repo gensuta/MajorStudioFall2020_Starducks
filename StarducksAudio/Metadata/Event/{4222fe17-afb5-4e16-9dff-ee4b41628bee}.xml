@@ -100,6 +100,7 @@
 			<destination>{67b1d0f3-d7ef-43a3-bd07-eea2591f55d8}</destination>
 			<destination>{a8bde033-46f9-4034-93f1-1159d93c6bd0}</destination>
 			<destination>{d6c4b127-b8c7-4a99-af25-45fad4628c48}</destination>
+			<destination>{ce01ba0e-4a4a-4ecc-9c29-ed0df630481d}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{72cdd752-30a5-4c17-b60f-c738472bee3d}">
@@ -194,6 +195,16 @@
 			<destination>{082574ae-4a04-4331-917b-03d4d68dcb62}</destination>
 			<destination>{1252ead8-dd40-4055-8e02-30161abc062f}</destination>
 			<destination>{32bdc191-8efd-46fa-bb39-b1e92ffe8cd9}</destination>
+		</relationship>
+	</object>
+	<object class="MultiSound" id="{ce01ba0e-4a4a-4ecc-9c29-ed0df630481d}">
+		<property name="name">
+			<value>Gabi</value>
+		</property>
+		<relationship name="sounds">
+			<destination>{368d4d88-c8b3-4b81-9f46-b357d6b5fa14}</destination>
+			<destination>{38ff5b39-b407-41e9-bd14-9f77103ce65d}</destination>
+			<destination>{ea006b68-0f44-4267-9d3c-2d6eeeee40be}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{880eb6b4-d6b3-4680-985d-e4f2c1dcea6f}">
@@ -306,6 +317,21 @@
 	<object class="SingleSound" id="{32bdc191-8efd-46fa-bb39-b1e92ffe8cd9}">
 		<relationship name="audioFile">
 			<destination>{216d7944-ba81-441b-937c-e00a7146aaf5}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{368d4d88-c8b3-4b81-9f46-b357d6b5fa14}">
+		<relationship name="audioFile">
+			<destination>{a40ba994-0419-4390-a4c4-1006fe302a65}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{38ff5b39-b407-41e9-bd14-9f77103ce65d}">
+		<relationship name="audioFile">
+			<destination>{247697ec-0c15-4e2c-84ad-f9da70dfe097}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{ea006b68-0f44-4267-9d3c-2d6eeeee40be}">
+		<relationship name="audioFile">
+			<destination>{8d97ee77-abc6-4c38-9a95-f7f94080ae42}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{ed9e7915-744e-4cf2-9c63-d995722ae510}" />

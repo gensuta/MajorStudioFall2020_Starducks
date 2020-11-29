@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{a40ba994-0419-4390-a4c4-1006fe302a65}">
+		<property name="assetPath">
+			<value>GabiOrder/GabiOrder1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.5697291666666668</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e524eee3-bc89-4047-ad08-0059e8dc0daf}</destination>
+		</relationship>
+	</object>
+</objects>
