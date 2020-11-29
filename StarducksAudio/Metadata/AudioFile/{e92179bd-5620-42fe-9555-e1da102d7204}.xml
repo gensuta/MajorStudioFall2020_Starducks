@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{e92179bd-5620-42fe-9555-e1da102d7204}">
+		<property name="assetPath">
+			<value>CoffeeTitleMusic.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>36.048000000000002</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e524eee3-bc89-4047-ad08-0059e8dc0daf}</destination>
+		</relationship>
+	</object>
+</objects>
