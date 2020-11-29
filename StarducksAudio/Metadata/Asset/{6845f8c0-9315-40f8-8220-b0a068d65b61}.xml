@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="EncodableAsset" id="{6845f8c0-9315-40f8-8220-b0a068d65b61}">
+		<property name="assetPath">
+			<value>GabiOrder/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e524eee3-bc89-4047-ad08-0059e8dc0daf}</destination>
+		</relationship>
+	</object>
+</objects>
