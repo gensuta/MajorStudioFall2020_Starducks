@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using FMODUnity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,6 +29,8 @@ public class GameController : MonoBehaviour
 
     bool playSongOnce;
 
+    public StudioEventEmitter music, ambience;
+
     void Awake()
     {
         if (Instance == null)
@@ -56,7 +59,6 @@ public class GameController : MonoBehaviour
                 }
             }
         }
-        tipMenu = FindObjectOfType<TipsMenu>();
 
     }
 
@@ -65,11 +67,13 @@ public class GameController : MonoBehaviour
     {
        if(sc.IsSceneCalled("StartScreen") && Input.GetMouseButtonDown(0))
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/OrderGame/ScreenTap");
+
             sc.LoadScene("OrderGame");
+            tipMenu.gameObject.SetActive(true);
             if(!playSongOnce)
             {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Overall/GameMusic");
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Overall/Ambience");
+                ambience.gameObject.transform.parent.gameObject.SetActive(true);
                 playSongOnce = true;
             }
         }

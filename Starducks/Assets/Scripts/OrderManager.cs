@@ -51,6 +51,10 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
     {
         if (!gc.isPaused)
         {
+
+            if(Input.GetMouseButtonDown(0))
+                FMODUnity.RuntimeManager.PlayOneShot("event:/OrderGame/ScreenTap");
+
             if (currentOrder < gc.maxOrders) // max orders per round. something we can alter and tune ourseves
             {
                 if (timer <= 0)
@@ -146,11 +150,9 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
     {
         newOrder.myDrink.flavor = (Flavor)f;
         NextPanel();
-        FMODUnity.RuntimeManager.PlayOneShot("event:/OrderGame/ScreenTap");
     }
     public void SizePicked(int s)
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/OrderGame/ScreenTap");
         newOrder.myDrink.size = (Size)s;
         OrderFinished();
     }
@@ -158,14 +160,12 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
     {
         newOrder.myDrink.drinkType = (DrinkType)d;
         NextPanel();
-        FMODUnity.RuntimeManager.PlayOneShot("event:/OrderGame/ScreenTap");
 
     }
     public void TempPicked(bool b)
     {
         newOrder.myDrink.isCold = b; 
         NextPanel();
-        FMODUnity.RuntimeManager.PlayOneShot("event:/OrderGame/ScreenTap");
     }
 
     public void NameEntered(string n)
@@ -187,7 +187,6 @@ public class OrderManager : MonoBehaviour // only for the order placing scene. a
 
     public void PrevPanel()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/OrderGame/ScreenTap");
         currentPanel--;
         ShowPanel();
     }

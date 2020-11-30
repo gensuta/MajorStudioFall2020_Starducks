@@ -400,6 +400,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6127951717230568801, guid: 014376d0cfc47e14aa6eaa2d9cbb0f8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7054865043324172316, guid: 014376d0cfc47e14aa6eaa2d9cbb0f8a,
         type: 3}
       propertyPath: maxOrders
@@ -470,7 +475,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9099220135578004728, guid: 014376d0cfc47e14aa6eaa2d9cbb0f8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8562528728544220338, guid: 014376d0cfc47e14aa6eaa2d9cbb0f8a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 014376d0cfc47e14aa6eaa2d9cbb0f8a, type: 3}
 --- !u!1 &1861196389
 GameObject:

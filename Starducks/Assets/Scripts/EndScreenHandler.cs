@@ -15,7 +15,12 @@ public class EndScreenHandler : MonoBehaviour
     void Start()
     {
         ScoreHandler.sc.CalculateTotalScore();
-        scoreTxt.text = "Your score is " + ScoreHandler.sc.totalScore;
+        scoreTxt.text = "You earned $" + ConvertScore() + " in tips! ";
+    }
+
+    string ConvertScore()
+    {
+        return string.Format("{0:0.00}", ((float)ScoreHandler.sc.totalScore * 0.01));
     }
 
     // Update is called once per frame

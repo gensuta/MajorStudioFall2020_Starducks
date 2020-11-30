@@ -103,7 +103,7 @@ public class SceneController : MonoBehaviour
     public void LoadScene(string sName)
     {
         if(!IsSceneCalled("StartScreen"))GameController.Instance.maxOrders = GameController.Instance.orders.Count;
-        StudioEventEmitter em = GetComponent<StudioEventEmitter>();
+        StudioEventEmitter em = GameController.Instance.ambience;
 
         if (IsSceneCalled("OrderGame")) em.SetParameter("isInOrderGame", 1f);
         else em.SetParameter("isInOrderGame", 0f);

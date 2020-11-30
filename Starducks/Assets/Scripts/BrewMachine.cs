@@ -297,6 +297,8 @@ public class BrewMachine : MonoBehaviour
 
     void DoesMatchAnOrder()
     {
+       
+
         Drink createdDrink = new Drink();
         createdDrink.size = chosenSize;
         createdDrink.isCold = isCold;
@@ -304,16 +306,40 @@ public class BrewMachine : MonoBehaviour
 
         int n = 0, similarities = 0, prevSim = -1, simOrder = -1;
         bool isCorrect = false;
-        foreach(Order o in orders)
+
+        foreach (Order o in orders)
         {
             if (o.myDrink.doesSortaMatch(createdDrink))
             {
-                // int in the score is 1 bc we have 3 games and start at 0 for counting
-                o.scores[1].CountStuff(createdDrink, o.myDrink,true);
-                o.scores[1].BrewGameDistBonus(drinkAmount.value, stopPoints[(int)createdDrink.size]);
-                isCorrect = true;
-                break;
+                if (bm.doneNums.Count == 0)
+                {
+                    o.scores[1].CountStuff(createdDrink, o.myDrink, true);
+                    o.scores[1].BrewGameDistBonus(drinkAmount.value, stopPoints[(int)createdDrink.size]);
+                    Debug.Log("hello!!");
+                    isCorrect = true;
+                    break;
+                }
+
+                bool canDo = true;
+
+                foreach (int num in bm.doneNums)
+                {
+                    if (n == num)
+                    {
+                        Debug.Log("no");
+                        canDo = false;
+                    }
+                }
+                if (canDo)
+                {
+                    // int in the score is 1 bc we have 3 games and start at 0 for counting
+                    o.scores[1].CountStuff(createdDrink, o.myDrink, true);
+                    o.scores[1].BrewGameDistBonus(drinkAmount.value, stopPoints[(int)createdDrink.size]);
+                    Debug.Log(n);
+                    isCorrect = true;
+                }
             }
+            if (isCorrect) break;
 
             if (o.myDrink.size == createdDrink.size) similarities++;
             if (o.myDrink.isCold == createdDrink.isCold) similarities++;
@@ -321,61 +347,64 @@ public class BrewMachine : MonoBehaviour
 
             if (prevSim < similarities)
             {
-                prevSim = similarities;
-                simOrder = n;
+                bool keepGoing = true;
+
+                if (bm.doneNums.Count == 0)
+                {
+                    prevSim = similarities;
+                    simOrder = n;
+                    keepGoing = false;
+                }
+
+                foreach (int num in bm.doneNums)
+                {
+                    if (!keepGoing) continue;
+
+                    if (n != num && keepGoing)
+                    {
+                        prevSim = similarities;
+                        simOrder = n;
+                        keepGoing = false;
+                    }
+                }
             }
 
             n++;
+
         }
-        if(isCorrect)
+
+
+        if (isCorrect)
         {
+            bm.doneNums.Add(n);
             RemoveOrder(n);
         }
         else
         {
-            if(simOrder < 0)
+            bm.doneNums.Add(simOrder);
+            //remove random
+            if (simOrder < 0)
             {
                 int rand = Random.Range(0, bm.currentOrders.Count);
                 RemoveOrder(rand);
             }
-            else
+            else // remove similar order
             {
-                GameController.Instance.orders[simOrder].scores[1].CountStuff(createdDrink,GameController.Instance.orders[simOrder].myDrink,true);
+
+                GameController.Instance.orders[simOrder].scores[1].CountStuff(createdDrink, GameController.Instance.orders[simOrder].myDrink, true);
                 GameController.Instance.orders[simOrder].scores[1].BrewGameDistBonus(drinkAmount.value, stopPoints[(int)createdDrink.size]);
 
-                prevSim = 0;
-                simOrder = 0;
-                n = 0;
-                foreach(Order o in orders)
-                {
-                    if (o.myDrink.size == createdDrink.size) similarities++;
-                    if (o.myDrink.isCold == createdDrink.isCold) similarities++;
-                    if (o.myDrink.flavor == createdDrink.flavor) similarities++;
 
-                    if (prevSim < similarities)
-                    {
-                        prevSim = similarities;
-                        simOrder = n;
-                    }
-                    n++;
-                }
-                
                 RemoveOrder(simOrder);
             }
         }
     }
 
-    // similarities 
-    // prev sim
-    // sim order
-    // remove function
-
-    void RemoveOrder(int num)
-    {
-        Debug.Log("Removing..." + num);
-        bm.currentOrders[num].SetActive(false);
-        orders.Remove(orders[num]);
-    }
+     void RemoveOrder(int num)
+     {
+         Debug.Log("Removing..." + num);
+         bm.currentOrders[num].SetActive(false);
+     }
 
     public void Trash()
     {

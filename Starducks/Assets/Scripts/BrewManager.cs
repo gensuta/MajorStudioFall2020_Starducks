@@ -16,6 +16,7 @@ public class BrewManager : MonoBehaviour // perhaps for the player?
     public int numSpawned;
 
     public List<GameObject> currentDrinks, currentOrders;// the ones that are displayed!
+    public List<int> doneNums = new List<int>();
 
     [SerializeField]
     Slider timeSlider;
