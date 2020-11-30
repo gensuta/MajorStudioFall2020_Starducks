@@ -244,7 +244,7 @@ MonoBehaviour:
   HasSourceProject: 1
   HasPlatforms: 1
   sourceProjectPath: ../StarducksAudio/StarducksAudio.fspro
-  sourceBankPath: ..\StarducksAudio\Build
+  sourceBankPath: ../StarducksAudio/Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
