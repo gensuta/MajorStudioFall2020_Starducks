@@ -378,11 +378,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7054865043324172316, guid: 014376d0cfc47e14aa6eaa2d9cbb0f8a,
         type: 3}
-      propertyPath: maxOrders
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7054865043324172316, guid: 014376d0cfc47e14aa6eaa2d9cbb0f8a,
-        type: 3}
       propertyPath: scoreMultiplier
       value: 10
       objectReference: {fileID: 0}

@@ -228,7 +228,7 @@ MonoBehaviour:
   - {fileID: 7572694773335118056}
   StringsBanks:
   - {fileID: 7772192921945031164}
-  stringsBankWriteTime: 637421900770000000
+  stringsBankWriteTime: 637422669770000000
   cacheVersion: 5
 --- !u!114 &778910580247707940
 MonoBehaviour:
@@ -253,6 +253,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 500
+--- !u!114 &1480700770038965656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience/isInOrderGame
+  m_EditorClassIdentifier: 
+  Name: isInOrderGame
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &1941275055530882306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +316,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 6537016513263174860}
+  - {fileID: 1480700770038965656}
   MinDistance: 0
   MaxDistance: 0
   Length: 36000
@@ -403,7 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: ../StarducksAudio/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637421900770000000
+  lastModified: 637422669770000000
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -446,13 +466,13 @@ MonoBehaviour:
   guid: 72054eb6896f9e468df18d85245d96d8
   Banks:
   - {fileID: 7572694773335118056}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 0
+  Length: 36048
 --- !u!114 &7772192921945031164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,7 +487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: ../StarducksAudio/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637421900770000000
+  lastModified: 637422669770000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop

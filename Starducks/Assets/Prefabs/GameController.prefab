@@ -465,9 +465,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   tipsText:
-  - Click da right buttons based on what peepol say :>
-  - Look at da orders and make em! Don't let the coffee overflow tho!! >:(
-  - Uh, right is hot and left is not...
+  - "Here come the customers\u2026 time to take their orders!\nEnter the drink, temperature,
+    flavor, and size that the customer asks for.\nMake sure you do it quick, people
+    always get antsy for their morning joe.\n\nRemember: Drinks hot unless specified,
+    except for Cold Brews, which are always iced!"
+  - "It\u2019s time to make those drinks!\nSelect the cup and flavor of the drink
+    you want to make, then hit brew and let the coffee machine work its magic. Then
+    hit brew again when it reaches the red line to avoid over filling, and serve
+    to send it out, or trash to try again.\n\nRemember: Switch between hot cups and
+    cold cups to get the right one for your order!"
+  - 'Time for the finishing touch!
+
+    Pop the lids on the cups as they pass by
+    and send them on their way, but make sure you put the right cover for the temperature
+    of drink!
+
+
+    Remember: Right click is hot, left click is not!'
   displayText: {fileID: 7464017828245313812}
 --- !u!95 &2466684282847579458
 Animator:
