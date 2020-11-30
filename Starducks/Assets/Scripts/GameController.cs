@@ -65,6 +65,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
        if(sc.IsSceneCalled("StartScreen") && Input.GetMouseButtonDown(0))
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/OrderGame/ScreenTap");
