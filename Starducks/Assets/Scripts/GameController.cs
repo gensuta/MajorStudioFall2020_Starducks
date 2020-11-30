@@ -26,6 +26,8 @@ public class GameController : MonoBehaviour
 
     public TipsMenu tipMenu;
 
+    bool playSongOnce;
+
     void Awake()
     {
         if (Instance == null)
@@ -64,6 +66,12 @@ public class GameController : MonoBehaviour
        if(sc.IsSceneCalled("StartScreen") && Input.GetMouseButtonDown(0))
         {
             sc.LoadScene("OrderGame");
+            if(!playSongOnce)
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Overall/GameMusic");
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Overall/Ambience");
+                playSongOnce = true;
+            }
         }
     }
 

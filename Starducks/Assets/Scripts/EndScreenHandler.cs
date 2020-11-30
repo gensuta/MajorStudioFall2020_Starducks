@@ -26,7 +26,7 @@ public class EndScreenHandler : MonoBehaviour
             int prevMax = GameController.Instance.maxOrders;
             GameController.Instance.orders.Clear();
             ScoreHandler.sc.totalScore = 0;
-            GameController.Instance.sc.LoadScene("StartScreen");
+            GameController.Instance.sc.LoadScene("OrderGame");
             GameController.Instance.maxOrders = prevMax;
             GameController.Instance.currentOrder = 0;
         }
