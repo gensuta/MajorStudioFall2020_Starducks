@@ -1402,6 +1402,14 @@ MonoBehaviour:
   brewMachines:
   - {fileID: 2273050373323493877}
   - {fileID: 727623969}
+  flavorSprites:
+  - {fileID: 21300000, guid: 1265b2632144efa4a8909df758508aeb, type: 3}
+  - {fileID: 21300000, guid: a9a2f96cc9937e540adc663d090a6674, type: 3}
+  - {fileID: 21300000, guid: 85f75339144928149acce4163808d4ee, type: 3}
+  - {fileID: 21300000, guid: 2d29840c1a3e83946844a90b54284f06, type: 3}
+  tempSprites:
+  - {fileID: 21300000, guid: 5a12804bd7de387408642445dc99f3cf, type: 3}
+  - {fileID: 21300000, guid: 22c94c065e6275a4e8bd381f09e4a23f, type: 3}
   drinkPrefab: {fileID: 3420376398643640686, guid: 9e2d2ffc48a5ac2438134be9eaa2e096,
     type: 3}
   drinkHolder: {fileID: 1205165288}
@@ -1411,6 +1419,7 @@ MonoBehaviour:
   numSpawned: 0
   currentDrinks: []
   currentOrders: []
+  doneNums: 
   timeSlider: {fileID: 1061558148}
   baseTime: 45
   smallTime: 7

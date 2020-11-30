@@ -8,6 +8,8 @@ public class BrewManager : MonoBehaviour // perhaps for the player?
 {
     public BrewMachine[] brewMachines;
 
+    
+    public Sprite[] flavorSprites, tempSprites;
 
     GameController gc;
 

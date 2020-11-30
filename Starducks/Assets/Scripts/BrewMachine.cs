@@ -6,6 +6,10 @@ using TMPro;
 
 public class BrewMachine : MonoBehaviour
 {
+
+    [SerializeField]
+    Image flavorImage;
+
     [SerializeField]
     bool isOn;
     [SerializeField]
@@ -150,7 +154,8 @@ public class BrewMachine : MonoBehaviour
 
     string ToFlavor(int flavorNum) // placing this here because enums can't have spaces ;-;
     {
-       
+        flavorImage.sprite = bm.flavorSprites[flavorNum-1];
+
         Flavor f = (Flavor)flavorNum;
         if (f.ToString() == Flavor.SaltedCaramel.ToString())
             return "Salted Caramel";
@@ -173,10 +178,11 @@ public class BrewMachine : MonoBehaviour
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/BrewGame/SettingSelect");
         isCold = !isCold;
-        if (!isCold) toggleText.text = "Switch to cold";
-        else toggleText.text = "Switch to \nhot";
+        toggleText.text = "";
+        if (!isCold) toggleText.GetComponentInParent<Image>().sprite = bm.tempSprites[1];
+        else toggleText.GetComponentInParent<Image>().sprite = bm.tempSprites[0];
 
-        foreach(Image i in cups)
+        foreach (Image i in cups)
         {
             if (isCold)
                 i.color = Color.blue;
